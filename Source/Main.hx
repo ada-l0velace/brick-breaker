@@ -15,6 +15,7 @@ class Main extends Sprite {
     var _gameObjects:List<GameObject>;
     var _paddle:Paddle;
     var _keys:Map<Int, Bool> = new Map<Int,Bool>();
+    var _stage = Lib.current.stage;
 
     public function new() {
         super();
@@ -23,9 +24,9 @@ class Main extends Sprite {
         _gameObjects.add(_paddle);
         this.addChild(_paddle);
 
-        Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-        Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
-        Lib.current.stage.stage.addEventListener(Event.ENTER_FRAME, update);
+        _stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+        _stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+        _stage.addEventListener(Event.ENTER_FRAME, update);
     }
 
     public function update(evt:Event):Void {
@@ -59,8 +60,8 @@ class Main extends Sprite {
     }
 
     public static function main() {
-        Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
-        Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
+        _stage.align = flash.display.StageAlign.TOP_LEFT;
+        _stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
         Lib.current.addChild(getInstance());
     }
 	
