@@ -22,15 +22,17 @@ class Brick extends StaticObject {
 
 
     public override function draw():Void {
-        this.graphics.beginFill(color);
-        this.graphics.drawRect(x, y, HEIGHT, WIDTH);
-        this.graphics.endFill();
+        if (!destroyed) {
+            this.graphics.beginFill(color);
+            this.graphics.drawRect(this.x, this.y, HEIGHT, WIDTH);
+            this.graphics.endFill();
+        }
     }
 
     public function new(xCord:Int, yCord:Int) {
         super();
-        x = xCord;
-        y = yCord;
+        this.x = xCord;
+        this.y = yCord;
         draw();
     }
 
