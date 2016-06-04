@@ -12,16 +12,16 @@ enum GameState {
 class Main extends Sprite {
 
     static var _instance = null;
-    var  _gameObjects:List<GameObject>;
-    var paddle:Paddle;
-    var keys:Map<Int, Bool> = new Map<Int,Bool>();
+    var _gameObjects:List<GameObject>;
+    var _paddle:Paddle;
+    var _keys:Map<Int, Bool> = new Map<Int,Bool>();
 
     public function new() {
         super();
         _gameObjects = new List<GameObject>();
-        paddle = new Paddle(0, 180);
-        _gameObjects.add(paddle);
-        this.addChild(paddle);
+        _paddle = new Paddle(0, 180);
+        _gameObjects.add(_paddle);
+        this.addChild(_paddle);
 
         Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
         Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -32,12 +32,12 @@ class Main extends Sprite {
         for(go in _gameObjects)
             go.update(1);
 
-        if (keys[39])
-            paddle.move(new Point(1,0));
-        else if (keys[37])
-            paddle.move(new Point(-1,0));
+        if (_keys[39])
+            _paddle.move(new Point(1,0));
+        else if (_keys[37])
+            _paddle.move(new Point(-1,0));
         else
-            paddle.move(new Point(0,0));
+            _paddle.move(new Point(0,0));
     }
 
     public function getGameObjects():List<GameObject> {
@@ -51,17 +51,17 @@ class Main extends Sprite {
     }
 
     private function onKeyDown(evt:KeyboardEvent):Void {
-        keys[evt.keyCode] = true;
+        _keys[evt.keyCode] = true;
     }
 
     private function onKeyUp(evt:KeyboardEvent):Void {
-        keys[evt.keyCode] = false;
+        _keys[evt.keyCode] = false;
     }
 
     public static function main() {
         Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
         Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
-        Lib.current.addChild(new Main());
+        Lib.current.addChild(getInstance());
     }
 	
 	

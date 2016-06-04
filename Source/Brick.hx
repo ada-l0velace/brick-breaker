@@ -3,10 +3,17 @@ import openfl.display.Sprite;
 import flash.Lib;
 
 class Brick extends StaticObject {
+    static inline var HEIGHT:Int = 100;
+    static inline var WEIGHT:Int = 35;
+
+    var color:Int = 0xff0000;
+    var destroyed:Bool = false;
+    var lives:Int;
+    var hits:Int;
 
     public override function draw():Void {
-        this.graphics.beginFill(0xff0000);
-        this.graphics.drawRect(x, y, 100, 35);
+        this.graphics.beginFill(color);
+        this.graphics.drawRect(x, y, HEIGHT, WEIGHT);
         this.graphics.endFill();
     }
 
