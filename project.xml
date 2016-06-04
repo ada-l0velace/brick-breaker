@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<window background="#eeeeee" fps="60" />
+	<window width="600" height="400" unless="mobile" />
+	<meta title="brickbreaker" package="com.sample.brickbreaker" version="1.0.0" company="Company Name" />
+	<app main="Main" path="Export" file="brickbreaker" />
+
+	<source path="Source" />
+	
+	<haxelib name="openfl" />
+	
+	<assets path="Assets" rename="assets" />
+	
+</project>
