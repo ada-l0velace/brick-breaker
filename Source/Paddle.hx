@@ -1,4 +1,5 @@
 package ;
+import flash.geom.Point;
 
 class Paddle extends DynamicObject {
 

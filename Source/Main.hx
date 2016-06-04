@@ -3,6 +3,7 @@ import flash.Lib;
 import openfl.display.Sprite;
 import flash.events.Event;
 import openfl.events.KeyboardEvent;
+import flash.geom.Point;
 
 enum GameState {
     Paused;
@@ -60,8 +61,8 @@ class Main extends Sprite {
     }
 
     public static function main() {
-        _stage.align = flash.display.StageAlign.TOP_LEFT;
-        _stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
+        Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
+        Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
         Lib.current.addChild(getInstance());
     }
 	
