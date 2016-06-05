@@ -9,10 +9,6 @@ class Paddle extends DynamicObject {
         this.graphics.endFill();
     }
 
-    public override function move(direction:Point):Void {
-        speed = direction;
-    }
-
     public function new(xCord:Int, yCord:Int) {
         super(new Point(0,0));
         x = xCord;

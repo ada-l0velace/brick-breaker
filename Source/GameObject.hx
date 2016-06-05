@@ -9,7 +9,7 @@ class GameObject extends Sprite {
     public function draw():Void {}
     public function update(delta_t:Float):Void {}
     public function move(direction:Point):Void {}
-    public function checkColision(xCord:Int, yCord:Int):Bool {
-        return ((xCord >= x) && (xCord <= x + width) && ((yCord >= y) && (yCord <= y + height)));
+    public function checkColision(b:Ball):Bool {
+        return false;
     }
 }

@@ -10,7 +10,7 @@ class Main extends Sprite {
     static var _instance = null;
     var _board:Board;
 
-    public function new() {
+    private function new() {
         super();
         var stage = Lib.current.stage;
         _board = new Board(stage.stageWidth, stage.stageHeight);

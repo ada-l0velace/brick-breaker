@@ -10,5 +10,6 @@
 	<haxelib name="openfl" />
 	
 	<assets path="Assets" rename="assets" />
-	
+	<haxelib name="actuate" />
+	<haxedef name="fdb" if="flash"/>
 </project>
