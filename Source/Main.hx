@@ -1,19 +1,31 @@
 package ;
 import flash.Lib;
 import openfl.display.Sprite;
-import flash.events.Event;
-import openfl.events.KeyboardEvent;
-import flash.geom.Point;
+import debug.FpsMem;
 
 class Main extends Sprite {
 
     static var _instance = null;
-    var _board:Board;
+    @:isVar var _board(get, null):Board;
+
+    public static var STAGE_HEIGHT_CENTER:Float;
+    public static var STAGE_WIDTH_CENTER:Float;
+
+    public function get__board():Board {
+        return _board;
+    }
 
     private function new() {
         super();
         var stage = Lib.current.stage;
+
+        STAGE_HEIGHT_CENTER = stage.stageHeight;
+        STAGE_WIDTH_CENTER = stage.stageWidth;
+
         _board = new Board(stage.stageWidth, stage.stageHeight);
+        //var fps_mem:FpsMem = new FpsMem(60, 260, 0xfffff);
+
+        //addChild(fps_mem);
         this.addChild(_board);
     }
 

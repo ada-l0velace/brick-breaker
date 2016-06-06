@@ -1,6 +1,6 @@
 
-import openfl.display.Sprite;
-import flash.Lib;
+import flash.geom.Point;
+import flash.events.Event;
 
 class Brick extends StaticObject {
 
@@ -9,54 +9,15 @@ class Brick extends StaticObject {
     var lives:Int = 1;
     var hits:Int = 0;
 
-
-    public override function checkColision(b:Ball):Bool {
-        if(hitRight(b) || hitTop(b) || hitBottom(b) || hitLeft(b)) {
-            hits++;
-            if(lives >= hits)
-                destroyed = true;
-            return true;
-        }
-        return false;
+    public function new(xCord:Int, yCord:Int, color:Int) {
+        super();
+        this.color = color;
+        this.x = xCord;
+        this.y = yCord;
+        draw();
+        addEventListener(Event.ENTER_FRAME, enterFrameEvents);
+        //addEventListener(Event.ENTER_FRAME, update);
     }
-
-    //Detect if the brick has been hit on its bottom, top, left, or right sides
-    public function hitBottom(b:Ball):Bool {
-        if ((b.x >= x) && (b.x <= x + width + 1) && (b.y == y + height) && (destroyed == false)) {
-            hits++;
-            b.y *= -1;
-            return true;
-        }
-        return false;
-    }
-
-    public function hitTop(b:Ball):Bool {
-        if ((b.x >= x) && (b.x <= x + width + 1) && (b.y == y) && (destroyed == false)) {
-            hits++;
-            b.y *= -1;
-            return true;
-        }
-        return false;
-    }
-
-    public function hitLeft(b:Ball):Bool {
-        if ((b.y >= y) && (b.y <= y + height) && (b.x == x) && (destroyed == false)) {
-            hits++;
-            b.x *= -1;
-            return true;
-        }
-        return false;
-    }
-
-    public function hitRight(b:Ball):Bool {
-        if ((b.y >= y) && (b.y <= y + height) && (b.x == x + width) && (destroyed == false)) {
-            hits++;
-            b.x *= -1;
-            return true;
-        }
-        return false;
-    }
-
 
     public override function draw():Void {
         if (!destroyed) {
@@ -66,12 +27,22 @@ class Brick extends StaticObject {
         }
     }
 
-    public function new(xCord:Int, yCord:Int, color:Int) {
-        super();
-        this.color = color;
-        this.x = xCord;
-        this.y = yCord;
-        draw();
+    private function enterFrameEvents(event:Event):Void{
+        //hit testing with the ball
+        var b:Ball = Main.getInstance().get__board().get__ball();
+        if(this.hitTestObject(b)){
+            //making the ball bounce off vertically
+            b.speed.y *= -1;
+            hits++;
+            //destroying this brick
+            if (hits >= lives)
+                this.parent.removeChild(this);
+            destroyed = true;
+            //stop running this code
+            removeEventListener(Event.ENTER_FRAME, enterFrameEvents);
+        }
     }
+
+
 
 }

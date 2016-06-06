@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<window background="#eeeeee" fps="60" />
-	<window width="600" height="400" unless="mobile" />
+	<window width="800" height="600" unless="mobile" />
+	<window width="0" height="0" if="html5" />
 	<meta title="brickbreaker" package="com.sample.brickbreaker" version="1.0.0" company="Company Name" />
 	<app main="Main" path="Export" file="brickbreaker" />
 
@@ -11,5 +12,6 @@
 	
 	<assets path="Assets" rename="assets" />
 	<haxelib name="actuate" />
+	<haxelib name="openfl" />
 	<haxedef name="fdb" if="flash"/>
 </project>
