@@ -1,11 +1,12 @@
 package;
+import scene.Scene;
 import Main;
 import flash.Lib;
 import openfl.display.Sprite;
 import flash.events.Event;
 import openfl.events.KeyboardEvent;
 import flash.geom.Point;
-
+import haxe.ui.toolkit.containers.SpriteContainer;
 
 class Board extends Sprite {
 
@@ -26,16 +27,15 @@ class Board extends Sprite {
     var _keys:Map<Int, Bool> = new Map<Int,Bool>();
     var _stage = Lib.current.stage;
 
-    public function new(width:Int, height:Int) {
+    public function new(width:Int, height:Int, sc:Scene) {
         super();
-        _stage.x = 0;
-        _stage.y = 0;
+        x = 0;
+        y = 0;
         _paddle = new Paddle(Main.STAGE_WIDTH_CENTER*0.5*0.5, 283);
-        trace(Main.STAGE_HEIGHT_CENTER*0.5*0.5);
         _gameObjects = new List<GameObject>();
         _gameObjects.add(_paddle);
         _ball = new Ball(20, 120, 0x0);
-        _stage.addChild(_ball);
+        addChild(_ball);
 
         _topWall = new Wall(0,0,0x0000FF,1210, 10);
         _bottomWall = new Wall(0, 300,0x0000FF, 1210, 10);
@@ -48,11 +48,11 @@ class Board extends Sprite {
         _gameObjects.add(_leftWall);
         createBricks();
         for(go in _gameObjects)
-            _stage.addChild(go);
+            addChild(go);
 
-        _stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-        _stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
-        _stage.addEventListener(Event.ENTER_FRAME, update);
+        Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+        Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+        addEventListener(Event.ENTER_FRAME, update);
     }
 
     public function createBricks() {
@@ -65,18 +65,19 @@ class Board extends Sprite {
     }
 
     public function update(evt:Event):Void {
+
         for(go in _gameObjects) {
             go.update(1);
-           _ball.update(30);
+            _ball.update(30);
         }
 
-        if (_keys[39])
+        if (_keys[39]) {
             _paddle.move(new Point(1,0));
-        else if (_keys[37])
+        } else if (_keys[37])
             _paddle.move(new Point(-1,0));
         else
             _paddle.move(new Point(0,0));
-        graphics.clear();
+        //graphics.clear();
     }
 
     public function getGameObjects():List<GameObject> {

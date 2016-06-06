@@ -1,0 +1,49 @@
+.longtext{
+    wrapLines: true;
+    backgroundColor: #65464;
+}
+
+
+
+#menu{
+    spacingY: 20;
+    verticalAlignment: center;
+    horizontalAlignment: center;
+    paddingRight: 350;
+}
+
+#level-container{
+    verticalAlignment: center;
+    horizontalAlignment: center;
+    spacing: 20;
+    paddingTop: 30
+}
+
+
+#game-beaten{
+    verticalAlignment: center;
+    horizontalAlignment: center;
+}
+
+.level-button{
+    width: 90;
+    height: 90;
+    fontSize: 30;
+}
+
+
+#car-wrapper{
+    verticalAlignment: center;
+    horizontalAlignment: right;
+    width: 40%;
+}
+
+#car{
+    verticalAlignment: left;
+}
+
+#menu Button{
+    fontSize: 20;
+    paddingBottom: 10;
+    paddingTop: 10;
+}

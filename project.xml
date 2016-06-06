@@ -2,7 +2,7 @@
 <project>
 	<window background="#eeeeee" fps="60" />
 	<window width="800" height="600" unless="mobile" />
-	<window width="0" height="0" if="html5" />
+	<window width="1210" height="610" if="html5" />
 	<meta title="brickbreaker" package="com.sample.brickbreaker" version="1.0.0" company="Company Name" />
 	<app main="Main" path="Export" file="brickbreaker" />
 
@@ -13,5 +13,7 @@
 	<assets path="Assets" rename="assets" />
 	<haxelib name="actuate" />
 	<haxelib name="openfl" />
+	<haxelib name="haxeui" />
 	<haxedef name="fdb" if="flash"/>
+
 </project>

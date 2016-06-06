@@ -8,7 +8,6 @@ class DynamicObject extends GameObject {
     function get_speed() { return speed; }
 
     function set_speed(speed:Point) {
-        speed.x *= velocity;
         return this.speed = speed;
     }
 
@@ -25,6 +24,7 @@ class DynamicObject extends GameObject {
     }
     public override function update(delta_t:Float):Void {
         var h:Float = velocity / delta_t;
+        //trace(x + " " + y + " " + speed);
         x += speed.x * h;
         y += speed.y * h;
     }

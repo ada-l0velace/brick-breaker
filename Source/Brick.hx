@@ -43,6 +43,4 @@ class Brick extends StaticObject {
         }
     }
 
-
-
 }

@@ -7,7 +7,7 @@ class Ball extends DynamicObject {
     var color:Int;
 
     public function new(xCord:Int, yCord:Int, color:Int) {
-        super(new Point(1, 1), 2);
+        super(new Point(1, 1), 3);
         this.color = color;
         this.x = xCord;
         this.y = yCord;
