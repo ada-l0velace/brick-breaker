@@ -1,4 +1,5 @@
 package;
+import Constants as C;
 import scene.Scene;
 import Main;
 import flash.Lib;
@@ -23,52 +24,74 @@ class Board extends Sprite {
     public var _bottomWall:Wall;
     public var _rightWall:Wall;
     public var _leftWall:Wall;
+    // Time of last step - for calculating time deltas...
+    var mLastStep:Float;
+    var mStepsPerSecond:Float;
 
     var _keys:Map<Int, Bool> = new Map<Int,Bool>();
     var _stage = Lib.current.stage;
 
-    public function new(width:Int, height:Int, sc:Scene) {
+    public function new(width:Float, height:Float, sc:Scene) {
         super();
-        x = 0;
-        y = 0;
-        _paddle = new Paddle(Main.STAGE_WIDTH_CENTER*0.5*0.5, 283);
         _gameObjects = new List<GameObject>();
+        createPaddle();
+        createWalls();
+        createBricks();
+        createBall();
+
+        for(go in _gameObjects)
+            addChild(go);
+        mLastStep = haxe.Timer.stamp();
+        Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+        Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+        sc.view.addEventListener(Event.ENTER_FRAME, update);
+    }
+
+    public function createPaddle() {
+        _paddle = new Paddle(C.PADDLE_X_START, C.PADDLE_Y_START, C.PADDLE_WIDTH, C.PADDLE_HEIGHT);
         _gameObjects.add(_paddle);
-        _ball = new Ball(20, 120, 0x0);
-        addChild(_ball);
+    }
 
-        _topWall = new Wall(0,0,0x0000FF,1210, 10);
-        _bottomWall = new Wall(0, 300,0x0000FF, 1210, 10);
+    public function createBall() {
+        _ball = new Ball(C.BALL_X_START, C.BALL_Y_START,  C.BALL_COLOR);
+        _gameObjects.add(_ball);
+    }
 
-        _rightWall = new Wall(600,0,0x0000FF, 10, 600);
-        _leftWall = new Wall(0,0,0x0000FF, 10, 600);
+    public function createWalls() {
+        _topWall = new Wall(0, 0, C.WALL_COLOR, C.WINDOW_WIDTH + 10, 10);
+        _bottomWall = new Wall(0, C.WINDOW_HEIGHT, C.WALL_COLOR, C.WINDOW_WIDTH + 10, 10);
+        _rightWall = new Wall(C.WINDOW_WIDTH, 0, C.WALL_COLOR, 10, C.WINDOW_HEIGHT);
+        _leftWall = new Wall(0, 0, C.WALL_COLOR, 10, C.WINDOW_HEIGHT);
         _gameObjects.add(_topWall);
         _gameObjects.add(_bottomWall);
         _gameObjects.add(_rightWall);
         _gameObjects.add(_leftWall);
-        createBricks();
-        for(go in _gameObjects)
-            addChild(go);
-
-        Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-        Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
-        addEventListener(Event.ENTER_FRAME, update);
     }
 
     public function createBricks() {
         for(i in 0...5) {
-            for(j in 0...6) {
+            for(j in 0...23) {
                 var color:Int = (((j+i) % 2) == 0) ? 0x00ff00 : 0xff0000;
-                _gameObjects.add(new Brick((j+1) * Constants.BRICK_WIDTH, i * Constants.BRICK_HEIGHT, color));
+                _gameObjects.add(new Brick((j+0.2) * C.BRICK_WIDTH, (i+0.4) * C.BRICK_HEIGHT, color, C.BRICK_WIDTH, C.BRICK_HEIGHT));
             }
         }
     }
 
     public function update(evt:Event):Void {
+        var now = haxe.Timer.stamp();
+        // Since the mStepsPerSecond may change in the Update call, make sure
+        //  we do all our calculations before we call Update.
+        mStepsPerSecond = 100 + 0 * 0.01;
+
+        // Do a number of descrete steps based on the mStepsPerSecond.
+        var steps = Math.floor( (now-mLastStep) * mStepsPerSecond );
+
+        mLastStep += steps / mStepsPerSecond;
+        var fractional_step = (now-mLastStep) * mStepsPerSecond;
 
         for(go in _gameObjects) {
-            go.update(1);
-            _ball.update(30);
+            go.update(fractional_step);
+            _ball.update(fractional_step);
         }
 
         if (_keys[39]) {

@@ -6,16 +6,15 @@ class Paddle extends DynamicObject {
 
     public override function draw():Void {
         this.graphics.beginFill(0xff0000);
-        this.graphics.drawRect(x, y, 100, 35);
+        this.graphics.drawRect(x, y, widthO, heightO);
         this.graphics.endFill();
     }
 
-    public function new(xCord:Float, yCord:Float) {
-        trace(xCord + " " + yCord);
-        super(new Point(0,0), 5);
+    public function new(xCord:Float, yCord:Float, width:Float, height:Float) {
+        super(width, height, new Point(0,0), 9);
+        draw();
         x = xCord;
         y = yCord;
-        draw();
         addEventListener(Event.ENTER_FRAME, enterFrameEvents);
     }
 
@@ -24,14 +23,14 @@ class Paddle extends DynamicObject {
         var leftW:Wall = Main.getInstance().get__board()._leftWall;
         var bottomtW:Wall = Main.getInstance().get__board()._bottomWall;
         var topW:Wall = Main.getInstance().get__board()._topWall;
-        trace(x + " " + topW.wWidth);
+        //trace(x + " " + topW.wWidth);
 
-        //if the ball hits the right side
-        if(x+376 >= topW.wWidth -40 && speed.x > 0) {
+        //if the paddle hits the right side
+        if(x >= topW.widthO - widthO && speed.x > 0) {
             speed.x = 0;
         }
-        //if the ball hits the left side
-        if(x+290 <= 0 && speed.x < 0) {
+        //if the paddle hits the left side
+        if(x <= 0 && speed.x < 0) {
             speed.x = 0;
         }
 
