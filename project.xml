@@ -14,4 +14,6 @@
 	<haxelib name="openfl" />
 	<haxelib name="haxeui" />
 	<haxedef name="fdb" if="flash"/>
+	<asset path="assets/audio" rename="sound" include="*.ogg" unless="flash" />
+	<asset path="assets/audio" rename="sound" include="*.mp3" if="flash" />
 </project>
