@@ -23,7 +23,13 @@ class MainMenu extends FullScreen  {
         view.findChild("options", Button, true).onClick = function(e:UIEvent){  /*new OptionsScene().show();*/  };
         view.findChild("about", Button, true).onClick = function(e:UIEvent){    /*new AboutScene().show();*/    };
         view.findChild("quit", Button, true).onClick = function(e:UIEvent){ trace("exit"); };
-        sound = Assets.getSound ("assets/sounds/What-Is-Love.ogg");
+        var soundExt:String;
+        #if flash
+            soundExt= "mp3";
+        #else
+            soundExt= "ogg";
+        #end
+        sound = Assets.getSound ("assets/sounds/What-Is-Love."+soundExt);
         var channel = sound.play(0);
         channel.addEventListener(Event.SOUND_COMPLETE,function(e:Event):Void {
             channel.stop();

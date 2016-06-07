@@ -36,7 +36,13 @@ class Brick extends StaticObject {
             //making the ball bounce off vertically
             b.speed.y *= -1;
             //b.speed.x *= -1;
-            Assets.getSound("assets/sounds/pickup.ogg").play();
+            var soundExt:String;
+            #if flash
+                soundExt= "mp3";
+            #else
+                soundExt= "ogg";
+            #end
+            Assets.getSound("assets/sounds/pickup."+soundExt).play();
             hits++;
             //destroying this brick
             if (hits >= lives)
