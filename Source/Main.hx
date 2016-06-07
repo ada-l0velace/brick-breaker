@@ -52,9 +52,6 @@ class Main extends Sprite {
         //new GameScene(0).show();
         //new LevelMenu().show();
         //new GameScene(3).show();
-        //var fps_mem:FpsMem = new FpsMem(60, 260, 0xfffff);
-
-        //addChild(fps_mem);
         //this.addChild(_board);
     }
 

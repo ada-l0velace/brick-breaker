@@ -1,6 +1,8 @@
 
 import flash.geom.Point;
 import flash.events.Event;
+import openfl.Assets;
+import openfl.media.Sound;
 
 class Brick extends StaticObject {
 
@@ -34,6 +36,7 @@ class Brick extends StaticObject {
             //making the ball bounce off vertically
             b.speed.y *= -1;
             //b.speed.x *= -1;
+            Assets.getSound("assets/sounds/pickup.ogg").play();
             hits++;
             //destroying this brick
             if (hits >= lives)

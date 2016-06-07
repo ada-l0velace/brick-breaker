@@ -1,6 +1,8 @@
 import scene.LevelMenu;
 import flash.geom.Point;
 import flash.events.Event;
+import openfl.Assets;
+import openfl.media.Sound;
 
 class Ball extends DynamicObject {
 
@@ -39,6 +41,7 @@ class Ball extends DynamicObject {
         //if the ball hits the bottom
         if(y >= rightW.heightO) {
             speed.y *= -1;
+            Assets.getSound("assets/sounds/gameover.ogg").play();
             new LevelMenu().show();
         }
         //if the ball hits the top
@@ -48,6 +51,8 @@ class Ball extends DynamicObject {
     }
 
     public function calcBallAngle(paddle:GameObject):Void{
+        //Hack to prevent the colision to bug
+        y -= 1;
         //ballPosition is the position of the ball is on the paddle
         var ballPosition:Int = Math.round(x - paddle.x);
         //trace("Ball: " + x + ":" + y);
@@ -57,10 +62,7 @@ class Ball extends DynamicObject {
         //All the way to the left is -.5
         //All the way to the right is .5
         //The center is 0
-        trace(x + " " + paddle.x);
-        trace("Ball: " + ballPosition + " " + paddle.widthO + " " + ballPosition / (paddle.widthO - 15));
-        var hitPercent:Int = Math.round(((ballPosition / (paddle.widthO - 15)) - .5)*3);
-        trace("Percent: " + hitPercent);
+        var hitPercent:Int = Math.round(((ballPosition / (paddle.widthO - 15)) - .5)*4);
         //Gets the hitPercent and makes it a larger number so the
         //ball actually bounces
         speed.x = hitPercent * 0.3;

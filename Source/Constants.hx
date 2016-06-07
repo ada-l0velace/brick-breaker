@@ -17,7 +17,7 @@ class Constants {
     public static inline var BALL_COLOR:Int = 0x0;
 
     //Paddle
-    public static inline var PADDLE_WIDTH:Float = 300;
+    public static inline var PADDLE_WIDTH:Float = 100;
     public static inline var PADDLE_HEIGHT:Float = 10;
     public static inline var PADDLE_RIGHT_BOUND:Float = 430;
     public static inline var PADDLE_X_START:Float = 500;

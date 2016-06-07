@@ -9,11 +9,9 @@
 	<source path="Source" />
 	
 	<haxelib name="openfl" />
-	
 	<assets path="Assets" rename="assets" />
 	<haxelib name="actuate" />
 	<haxelib name="openfl" />
 	<haxelib name="haxeui" />
 	<haxedef name="fdb" if="flash"/>
-
 </project>

@@ -1,7 +1,9 @@
 package;
 import Constants as C;
 import scene.Scene;
-import Main;
+
+import debug.FpsMem;
+
 import flash.Lib;
 import openfl.display.Sprite;
 import flash.events.Event;
@@ -34,11 +36,14 @@ class Board extends Sprite {
     public function new(width:Float, height:Float, sc:Scene) {
         super();
         _gameObjects = new List<GameObject>();
+        var fps_mem:FpsMem = new FpsMem(60, 260, 0xfffff);
+
+        addChild(fps_mem);
+
         createPaddle();
         createWalls();
         createBricks();
         createBall();
-
         for(go in _gameObjects)
             addChild(go);
         mLastStep = haxe.Timer.stamp();
