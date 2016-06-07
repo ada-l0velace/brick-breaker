@@ -17,10 +17,9 @@ class DynamicObject extends GameObject {
         this.speed = speed;
     }
 
-    public override function move(direction:Point):Void {
-        //speed.x = direction.x;
-        //speed.y = direction.y;
-        speed = direction;
+    public override function move(x:Float, y:Float):Void {
+        speed.x = x;
+        speed.y = y;
     }
 
     public override function update(delta_t:Float):Void {

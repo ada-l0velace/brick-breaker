@@ -14,7 +14,7 @@ class GameObject extends Sprite {
     }
     public function draw():Void {}
     public function update(delta_t:Float):Void {}
-    public function move(direction:Point):Void {}
+    public function move(x:Float, y:Float):Void {}
     public function checkColision(b:Ball):Bool {
         return false;
     }

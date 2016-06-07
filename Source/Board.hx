@@ -100,11 +100,11 @@ class Board extends Sprite {
         }
 
         if (_keys[39]) {
-            _paddle.move(new Point(1,0));
+            _paddle.move(1,0);
         } else if (_keys[37])
-            _paddle.move(new Point(-1,0));
+            _paddle.move(-1,0);
         else
-            _paddle.move(new Point(0,0));
+            _paddle.move(0,0);
         //graphics.clear();
     }
 
