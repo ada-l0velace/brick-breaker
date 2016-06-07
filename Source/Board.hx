@@ -84,19 +84,10 @@ class Board extends Sprite {
 
     public function update(evt:Event):Void {
         var now = haxe.Timer.stamp();
-        // Since the mStepsPerSecond may change in the Update call, make sure
-        //  we do all our calculations before we call Update.
-        mStepsPerSecond = 100 + 0 * 0.01;
-
-        // Do a number of descrete steps based on the mStepsPerSecond.
-        var steps = Math.floor( (now-mLastStep) * mStepsPerSecond );
-
-        mLastStep += steps / mStepsPerSecond;
-        var fractional_step = (now-mLastStep) * mStepsPerSecond;
-
+        var delta_t = now - mLastStep;
+		mLastStep = now;
         for(go in _gameObjects) {
-            go.update(fractional_step);
-            _ball.update(fractional_step);
+            go.update(delta_t);
         }
 
         if (_keys[39]) {

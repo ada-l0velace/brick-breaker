@@ -11,7 +11,7 @@ class Paddle extends DynamicObject {
     }
 
     public function new(xCord:Float, yCord:Float, width:Float, height:Float) {
-        super(width, height, new Point(0,0), 9);
+        super(width, height, new Point(0,0), 222);
         draw();
         x = xCord;
         y = yCord;

@@ -9,7 +9,7 @@ class Ball extends DynamicObject {
     var color:Int;
 
     public function new(xCord:Float, yCord:Float, color:Int) {
-        super(30, 30, new Point(1, 1), 0.08);
+        super(30, 30, new Point(1, 1), 120);
         this.color = color;
         draw();
         this.x = xCord;
@@ -30,21 +30,21 @@ class Ball extends DynamicObject {
         var topW:Wall = Main.getInstance().get__board()._topWall;
 
         //if the ball hits the right side
-        if(this.x >= topW.widthO) {
+        if (this.x >= topW.widthO) {
             speed.x *= -1;
         }
         //if the ball hits the left side
-        if(this.x <= 0) {
+        if (this.x  <= 0 && speed.x <= 0) {
             speed.x *= -1;
         }
         //if the ball hits the bottom
         if(this.y >= rightW.heightO) {
-            speed.y *= -1;
-            Assets.getSound("assets/sounds/gameover.ogg").play();
+			speed.y *= -1;
+            //Assets.getSound("assets/sounds/gameover.ogg").play();
             new LevelMenu().show();
         }
         //if the ball hits the top
-        if(this.y <= 0) {
+        if (this.y <= 0) {
             speed.y *= -1;
         }
     }
