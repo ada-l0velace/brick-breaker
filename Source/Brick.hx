@@ -32,9 +32,12 @@ class Brick extends StaticObject {
     private function enterFrameEvents(event:Event):Void{
         //hit testing with the ball
         var b:Ball = Main.getInstance().get__board().get__ball();
-        if(this.hitTestObject(b)){
+        var i:Intersection;
+        i = checkColision(b);
+        b.bounce(i);
+        if(i != Intersection.NONE){
             //making the ball bounce off vertically
-			b.speed.y *= -1;
+			//b.speed.y *= -1;
             //b.speed.x *= -1;
             var soundExt:String;
             #if flash
@@ -42,7 +45,7 @@ class Brick extends StaticObject {
             #else
                 soundExt= "ogg";
             #end
-            //Assets.getSound("assets/sounds/pickup."+soundExt).play();
+            Assets.getSound("assets/sounds/pickup."+soundExt).play();
             hits++;
             //destroying this brick
             if (hits >= lives)

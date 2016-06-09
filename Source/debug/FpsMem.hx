@@ -32,8 +32,7 @@ class FpsMem extends TextField
         height = 70;
     }
 
-    private function onEnter(_)
-    {
+    private function onEnter(_)  {
         var now = Timer.stamp();
         times.push(now);
 

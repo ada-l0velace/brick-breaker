@@ -6,12 +6,12 @@ class Paddle extends DynamicObject {
 
     public override function draw():Void {
         this.graphics.beginFill(0xff0000);
-        this.graphics.drawRect(x, y, widthO, heightO);
+        this.graphics.drawRect(0, 0, widthO, heightO);
         this.graphics.endFill();
     }
 
     public function new(xCord:Float, yCord:Float, width:Float, height:Float) {
-        super(width, height, new Point(0,0), 222);
+        super(width, height, new Point(0,0), 400);
         draw();
         x = xCord;
         y = yCord;
@@ -46,6 +46,7 @@ class Paddle extends DynamicObject {
             //b.move(new Point(0,0));
             b.calcBallAngle(this);
         }
+        //b.bounce(checkColision(b));
     }
 
 }

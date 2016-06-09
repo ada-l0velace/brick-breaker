@@ -1,4 +1,5 @@
 package;
+import openfl.display.Bitmap;
 import Constants as C;
 import scene.Scene;
 
@@ -8,6 +9,7 @@ import flash.Lib;
 import openfl.display.Sprite;
 import flash.events.Event;
 import openfl.events.KeyboardEvent;
+import openfl.Assets;
 import flash.geom.Point;
 import haxe.ui.toolkit.containers.SpriteContainer;
 
@@ -33,13 +35,31 @@ class Board extends Sprite {
     var _keys:Map<Int, Bool> = new Map<Int,Bool>();
     var _stage = Lib.current.stage;
 
+    var default_bg_color:Int = 0x0;
+
+    var bgshape:Sprite;
+
+    function initBG() {
+        bgshape = new Sprite();
+        bgshape.graphics.beginFill(default_bg_color);
+        bgshape.graphics.drawRect(0,0,_stage.stageWidth, _stage.stageHeight);
+        addChildAt(bgshape, 0);
+        _stage.addEventListener(Event.RESIZE, resizeBGWithStage);
+    }
+    function changeBGColor(color:Int) {
+        bgshape.graphics.beginFill(color);
+        bgshape.graphics.drawRect(0,0,_stage.stageWidth, _stage.stageHeight);
+    }
+    function resizeBGWithStage(e:Event) {
+
+        bgshape.width = _stage.stageWidth;
+        bgshape.height = _stage.stageHeight;
+    }
+
     public function new(width:Float, height:Float, sc:Scene) {
         super();
         _gameObjects = new List<GameObject>();
-        var fps_mem:FpsMem = new FpsMem(60, 260, 0xfffff);
-
-        addChild(fps_mem);
-
+        initBG();
         createPaddle();
         createWalls();
         createBricks();
@@ -63,10 +83,10 @@ class Board extends Sprite {
     }
 
     public function createWalls() {
-        _topWall = new Wall(0, 0, C.WALL_COLOR, C.WINDOW_WIDTH + 10, 10);
-        _bottomWall = new Wall(0, C.WINDOW_HEIGHT, C.WALL_COLOR, C.WINDOW_WIDTH + 10, 10);
-        _rightWall = new Wall(C.WINDOW_WIDTH, 0, C.WALL_COLOR, 10, C.WINDOW_HEIGHT);
-        _leftWall = new Wall(0, 0, C.WALL_COLOR, 10, C.WINDOW_HEIGHT);
+        _topWall = new Wall(C.TOP_WALL_X_START, C.TOP_WALL_Y_START,C.WALL_COLOR, C.WINDOW_WIDTH + 10, 10);
+        _bottomWall = new Wall(C.BOT_WALL_X_START, C.BOT_WALL_Y_START, C.WALL_COLOR, C.WINDOW_WIDTH + 10, 10);
+        _rightWall = new Wall(C.RIGHT_WALL_X_START, C.RIGHT_WALL_Y_START, C.WALL_COLOR, 10, C.WINDOW_HEIGHT);
+        _leftWall = new Wall(C.LEFT_WALL_X_START, C.LEFT_WALL_Y_START, C.WALL_COLOR, 10, C.WINDOW_HEIGHT);
         _gameObjects.add(_topWall);
         _gameObjects.add(_bottomWall);
         _gameObjects.add(_rightWall);
@@ -75,9 +95,10 @@ class Board extends Sprite {
 
     public function createBricks() {
         for(i in 0...5) {
-            for(j in 0...23) {
+            for(j in 0...11) {
                 var color:Int = (((j+i) % 2) == 0) ? 0x00ff00 : 0xff0000;
-                _gameObjects.add(new Brick((j+0.2) * C.BRICK_WIDTH, (i+0.4) * C.BRICK_HEIGHT, color, C.BRICK_WIDTH, C.BRICK_HEIGHT));
+                _gameObjects.add(new Brick((j+0.2) * C.BRICK_WIDTH, (i+0.4) * C.BRICK_HEIGHT+C.UI_TOP_WINDOW_HEIGHT, color, C
+                .BRICK_WIDTH, C.BRICK_HEIGHT));
             }
         }
     }
@@ -89,7 +110,7 @@ class Board extends Sprite {
         for(go in _gameObjects) {
             go.update(delta_t);
         }
-
+        _ball.move(0,0);
         if (_keys[39]) {
             _paddle.move(1,0);
         } else if (_keys[37])

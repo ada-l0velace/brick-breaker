@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<window background="#eeeeee" fps="60" />
-	<window width="800" height="600" unless="mobile" />
-	<window width="1210" height="610" if="html5" />
+	<window background="#000000" fps="60" />
+	<window width="600" height="700" unless="mobile" />
+	<window width="600" height="700" if="html5" />
 	<meta title="brickbreaker" package="com.sample.brickbreaker" version="1.0.0" company="Company Name" />
 	<app main="Main" path="Export" file="brickbreaker" />
 
