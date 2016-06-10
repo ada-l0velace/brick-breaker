@@ -17,26 +17,34 @@ import openfl.Lib;
 class PauseScene extends PopupScene {
 
     public function new() {
-
+		var gs:GameSound = new GameSound();
         super();
 		var b:Board = Main.getInstance().get__board();
+		
         //Set Preferences
         width = 300;
         title = "Pause game";
         buttons = [];
-
-
-        //Layout
+		
+		//Layout
         view = Toolkit.processXmlResource("assets/ui/layout/pause.xml");
+		var resumeButton:Button = view.findChild("resume", Button, true);
+		var mainMenu:Button = view.findChild("main-menu", Button, true);
+		var restart:Button = view.findChild("restart", Button, true);
+
+        
 
         //Define Events for "Back to game"
-        view.findChild("resume", Button, true).onClick = function(e:UIEvent){    resume();    };
-
+        resumeButton.onClick = function(e:UIEvent) { gs.buttonClickSound(); resume(); };
         //Set the events for the main menu and reboot
-        view.findChild("main-menu", Button, true).onClick = function(e:UIEvent){ b.remove();   new MainMenu().show();     };
-        view.findChild("restart", Button, true).onClick = function(e:UIEvent){  b.remove(); new GameScene(0).show();    };
+        mainMenu.onClick = function(e:UIEvent) { gs.buttonClickSound(); b.remove(); new MainMenu().show(); };
+        restart.onClick = function(e:UIEvent) {  gs.buttonClickSound(); b.remove(); new GameScene(0).show(); };
 
-
+		 //Define Events for "Back to game"
+        resumeButton.onMouseOver = function(e:UIEvent){    gs.buttonOverSound();  };
+        //Set the events for the main menu a nd reboot
+        mainMenu.onMouseOver = function(e:UIEvent) { gs.buttonOverSound();  };
+        restart.onMouseOver = function(e:UIEvent) {  gs.buttonOverSound();  };
     }
 
 

@@ -27,11 +27,11 @@ class Constants {
 
     //Paddle
     public static inline var PADDLE_WIDTH:Float = 100;
-    public static inline var PADDLE_HEIGHT:Float = 10;
+    public static inline var PADDLE_HEIGHT:Float = 30;
     public static inline var PADDLE_RIGHT_BOUND:Float = 430;
 	
     public static inline var PADDLE_X_START:Float = 500 + WINDOW_WIDTH/2 - PADDLE_WIDTH/2;
-    public static inline var PADDLE_Y_START:Float = WINDOW_HEIGHT - PADDLE_HEIGHT - 10;
+    public static inline var PADDLE_Y_START:Float = WINDOW_HEIGHT - PADDLE_HEIGHT -10;
 	
     public static inline var PADDLE_MIN:Float = 35;
     public static inline var PADDLE_MAX:Float = 140;
@@ -45,7 +45,7 @@ class Constants {
     public static inline var NO_BRICKS:Float = 0;
 
     //Walls
-    public static inline var WALL_COLOR:Int = 0x0000FF;
+    public static inline var WALL_COLOR:Int = 0x000000;
 	
     public static inline var TOP_WALL_X_START:Float = 500;
     public static inline var TOP_WALL_Y_START:Float = 0 + UI_TOP_WINDOW_HEIGHT;

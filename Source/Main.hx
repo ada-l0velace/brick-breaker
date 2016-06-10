@@ -33,7 +33,6 @@ class Main extends Sprite {
 
     private function new() {
         super();
-		
 		//first resize and listener
 		var stage = Lib.current.stage;
         STAGE_HEIGHT_CENTER = stage.stageHeight;
@@ -60,6 +59,8 @@ class Main extends Sprite {
     }
 
     public static function main() {
+		Lib.current.stage.align = openfl.display.StageAlign.TOP_LEFT;
+		Lib.current.stage.scaleMode = openfl.display.StageScaleMode.NO_SCALE;
         Lib.current.addChild(getInstance());
     }
 	

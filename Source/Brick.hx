@@ -3,19 +3,21 @@ import flash.geom.Point;
 import flash.events.Event;
 import openfl.Assets;
 import openfl.media.Sound;
+import openfl.Assets.getBitmapData;
+import openfl.display.Bitmap;
 
 class Brick extends StaticObject {
 
-    var color:Int = 0xff0000;
     var destroyed:Bool = false;
     var lives:Int = 1;
     var hits:Int = 0;
+	var src:String;
 
-    public function new(xCord:Float, yCord:Float, color:Int, width:Float, height:Float) {
+    public function new(xCord:Float, yCord:Float, src:String, width:Float, height:Float) {
         super(width, height);
-        this.color = color;
         this.x = xCord;
         this.y = yCord;
+		this.src = src;
         draw();
         //addEventListener(Event.ENTER_FRAME, enterFrameEvents);
         //addEventListener(Event.ENTER_FRAME, update);
@@ -23,9 +25,15 @@ class Brick extends StaticObject {
 
     public override function draw():Void {
         if (!destroyed) {
+			var img:Bitmap = new Bitmap(Assets.getBitmapData("assets/ui/" + src));
+			img.width = widthO;
+			img.height = heightO;
+			addChild(img);
+			/*
             this.graphics.beginFill(color);
             this.graphics.drawRect(0, 0, widthO, heightO);
             this.graphics.endFill();
+			*/
         }
     }
 	public override function update(delta_t:Float):Void {
@@ -38,10 +46,11 @@ class Brick extends StaticObject {
 			    var m:Main = Main.getInstance();
 				var b:Board = m.get__board();
 				hits++;
-				b.bricksDestroyed++;
-				//destroying this brick
-				b.gameSound.brickSound();
+				
 				if (hits >= lives) {
+					b.bricksDestroyed++;
+					//destroying this brick
+					b.gameSound.brickSound();
 					b.set_score(b.get_score()+200);
 					//this.parent.removeChild(this);
 					visible = false;

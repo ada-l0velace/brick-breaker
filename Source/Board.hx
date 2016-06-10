@@ -26,6 +26,8 @@ class Board extends Sprite {
     var _gameObjects:List<GameObject>;
     var _paddle:Paddle;
 	
+	var _start:Bool;
+	
 	public var gameSound:GameSound;
 	
 	public var totalBricks:Int = 0;
@@ -41,7 +43,6 @@ class Board extends Sprite {
     // Time of last step - for calculating time deltas...
     var mLastStep:Float;
     var mStepsPerSecond:Float;
-
     var _keys:Map<Int, Bool> = new Map<Int,Bool>();
     var _stage = Lib.current.stage;
 
@@ -67,9 +68,11 @@ class Board extends Sprite {
     }
 	
 	private function init(sc:Scene) {
+		Lib.current.stage.focus = this;
 		_gameObjects = new List<GameObject>();
 		score = 0;
 		running = true;
+		_start = true;
         initBG();
         createPaddle();
         createWalls();
@@ -116,8 +119,8 @@ class Board extends Sprite {
     private function createBricks() {
         for(i in 0...5) {
             for(j in 0...5) {
-                var color:Int = (((j+i) % 2) == 0) ? 0xff9600 : 0x4D1E00;
-                _gameObjects.add(new Brick((j+0.1) * C.BRICK_WIDTH + C.BRICK_X_START, (i+0.4) * C.BRICK_HEIGHT+C.BRICK_Y_START, color, C
+                var src:String = (((j+i) % 2) == 0) ? "brick-red.png" : "dark-brick.png";
+                _gameObjects.add(new Brick((j+0.1) * C.BRICK_WIDTH + C.BRICK_X_START, (i+0.4) * C.BRICK_HEIGHT+C.BRICK_Y_START, src, C
                 .BRICK_WIDTH, C.BRICK_HEIGHT));
 				totalBricks++;
             }
@@ -137,7 +140,7 @@ class Board extends Sprite {
 			var now = haxe.Timer.stamp();
 			var delta_t = now - mLastStep;
 			mLastStep = now;
-			if(running) {
+			if (running) {
 				for(go in _gameObjects) {
 					go.update(delta_t);
 				}			
@@ -146,7 +149,8 @@ class Board extends Sprite {
 					_paddle.move(1,0);
 				else if (_keys[37])
 					_paddle.move(-1,0);
-				else if (_keys[32]) { 
+				else if (_keys[32] && _start) { 
+					_start = false;
 					_ball.speed.x = 0;
 					_ball.speed.y = 5;
 				}

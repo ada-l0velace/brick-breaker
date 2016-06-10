@@ -16,13 +16,16 @@ class GameBeatenScene extends FullScreen {
 
 	public function new() {
         super();
-        
+        var gs:GameSound = new GameSound();
         //Layout
         view = Toolkit.processXmlResource("assets/ui/layout/game-beaten.xml");
 
 
         //onClick-Events
-        view.findChild("main-menu", Button, true).onClick = function(e:UIEvent){    new MainMenu().show();    };
-    }
+		var mainMenu:Button = view.findChild("main-menu", Button, true);
+        mainMenu.onClick = function(e:UIEvent){ gs.buttonClickSound(); new MainMenu().show(); };
+    
+		mainMenu.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };
+	}
 	
 }

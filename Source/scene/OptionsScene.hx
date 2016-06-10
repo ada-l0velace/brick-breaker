@@ -27,13 +27,18 @@ class OptionsScene extends PopupScene {
         buttons = [PopupButton.OK, PopupButton.CANCEL];
         configuration = new Configuration();
 
-
+		var gs:GameSound = new GameSound();
         //Load layout and set values
         view = loadOptions(Toolkit.processXmlResource("assets/ui/layout/options.xml"));
 
         //define the actions , if the OK button has been pressed
         callback = function(btn:Dynamic) {
-            if (btn == PopupButton.OK) saveOptions(view); //Save configuration
+            if (btn == PopupButton.OK) {
+				gs.buttonClickSound();
+				saveOptions(view); //Save configuration
+			}
+			else if (btn == PopupButton.CANCEL)
+				gs.buttonOverSound();
         };
 
 

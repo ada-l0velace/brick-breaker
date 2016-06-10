@@ -1,13 +1,23 @@
 package ;
-import flash.geom.Point;
-import flash.events.Event;
+import openfl.geom.Point;
+import openfl.events.Event;
+import openfl.Assets;
+import openfl.display.Bitmap;
+import openfl.display.Sprite;
+import openfl.display.Tilesheet;
 
 class Paddle extends DynamicObject {
+	
 
     public override function draw():Void {
+		var img:Bitmap = new Bitmap(Assets.getBitmapData("assets/ui/paddle.png"));
+		img.width = widthO;
+		img.height = heightO;
+		addChild(img);
+		/*
         this.graphics.beginFill(0xff0000);
         this.graphics.drawRect(0, 0, widthO, heightO);
-        this.graphics.endFill();
+        this.graphics.endFill();*/
     }
 
     public function new(xCord:Float, yCord:Float, width:Float, height:Float) {
@@ -23,9 +33,9 @@ class Paddle extends DynamicObject {
         var bottomtW:Wall = Main.getInstance().get__board()._bottomWall;
         var topW:Wall = Main.getInstance().get__board()._topWall;
         //trace(x + " " + topW.wWidth);
-
+		
         //if the paddle hits the right side
-        if(x >= topW.widthO - widthO + leftW.x -10 && speed.x > 0) {
+        if(x >= topW.width - width + leftW.x -10 && speed.x > 0) {
             speed.x = 0;
         }
         //if the paddle hits the left side
