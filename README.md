@@ -19,4 +19,10 @@ You can reset your options settings and find more about this project.
 # not finished feature
 It was planned to add extra feature like extra levels and power ups, unfortunately I didn't have time but my code is very flexible and they could be implemented very easily.
 
+# Problems
+Memory info doesn't display on html5 because in javascript you can't get memory info, to check for memory use the flash version.
+
+# notes
+Attention to the fact html5 must be running on a web server due to cross origin request problems
+
 The both versions of the game(html5 and flash) can be found in the Export folder.
