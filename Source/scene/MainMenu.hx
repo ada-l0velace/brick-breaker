@@ -19,16 +19,12 @@ import openfl.events.Event;
 import openfl.events.MouseEvent;
 import openfl.net.URLRequest;
 import haxe.ui.toolkit.containers.Container;
+import openfl.system.System;
 /**
 * Main Menu
 **/
 class MainMenu extends FullScreen  {
-    var sound:Sound;
-	var w:Float; //height (5%) (bar height)
-    var h:Float; //width (90%) (bar width)
-    var r:Float; //radius (borders)
-    var p:Float; //padding pixels
-    var t:Float; //thickness (borders)
+    
     public function new() {
         super();
         //Layout
@@ -44,15 +40,17 @@ class MainMenu extends FullScreen  {
 		var about:Button = view.findChild("about", Button, true);
 		var quit:Button = view.findChild("quit", Button, true);
 		
+		quit.visible = false;
+		
         start.onClick = function(e:UIEvent){ gs.buttonClickSound(); new LevelMenu().show(); };
         options.onClick = function(e:UIEvent){ gs.buttonClickSound();  new OptionsScene().show();  };
-        about.onClick = function(e:UIEvent){  gs.buttonClickSound();   /*new AboutScene().show();*/    };
-        quit.onClick = function(e:UIEvent){ gs.buttonClickSound();  trace("y"); };
+        about.onClick = function(e:UIEvent){  gs.buttonClickSound();   new AboutScene().show();    };
+        /*quit.onClick = function(e:UIEvent){ gs.buttonClickSound();  System.exit(0); };*/
 		
 		start.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };
         options.onMouseOver = function(e:UIEvent){ gs.buttonOverSound();  };
         about.onMouseOver = function(e:UIEvent){ gs.buttonOverSound();   /*new AboutScene().show();*/    };
-        quit.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };
+        /*quit.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };*/
 		
 		new LogoTextField("Brick Breaker", (Lib.current.stage.stageWidth - 0.9 * Lib.current.stage.stageWidth) / 2,  Lib.current.stage.stageHeight * 0.3);
 		//view.addChild(new LogoTextField("Brick Breaker", (Lib.current.stage.stageWidth-0.9 * Lib.current.stage.stageWidth)/2,  Lib.current.stage.stageHeight*0.3).result());

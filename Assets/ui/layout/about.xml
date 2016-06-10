@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+	<vbox width="100%">
+
+		<text wrapLines="true" width="100%" text="Created as part of a challenge application in miniclip. Coded by Ricardo Campos 2015-2016" />
+
+		<divider text="Source" />
+		<text wrapLines="true"  width="100%" text="This game was developed with the programming language Haxe and libraries OpenFl and HaxeUI." />
+
+		<divider text="Github" />
+		<text wrapLines="true"  width="100%" text='For more information about my other projects visit https://github.com/lolstorm92/".' />
+
+		 <spacer height="20" />
+   		 <button text="Reset data" id="reset" horizontalAlign="right" />
+
+	</vbox>
