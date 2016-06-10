@@ -6,9 +6,9 @@ I designed an Uml chart to help me visualize the game structure it can be found 
 http://c2.com/cgi/wiki?ExtremeProgrammingForOne
 	
 # game keys
-left arrow key -> move the paddle to the left.
-right arrow key -> move the paddle to the right.
-space -> begin the game.
+left arrow key -> move the paddle to the left.</br>
+right arrow key -> move the paddle to the right.</br>
+space -> begin the game.</br>
 
 # game options
 You can enable and disable sound.
