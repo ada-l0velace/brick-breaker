@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<vbox width="100%">
+
+    <spacer height="10" />
+    <button text="Main Menu" id="main-menu" horizontalAlign="center" width="70%"/>
+    <button text="Restart" id="restart" horizontalAlign="center" width="70%"/>
+    <spacer height="15" />
+    <button text="Play" id="resume" horizontalAlign="center" width="70%"/>
+    <spacer height="10" />
+    
+</vbox>

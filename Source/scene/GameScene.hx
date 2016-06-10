@@ -32,8 +32,14 @@ class GameScene extends FullScreen {
         memF = view.findChild("total-memory", Text, true);
         //The game will be added to the scene dynamically.
         //view.addChild(new SpriteContainer(Main.getInstance().get__board()));
-        var board:Board = new Board(1,1, this);
-        Main.getInstance().set__board(board);
+		var board:Board;
+		//if( (board = Main.getInstance().get__board()) == null) {
+		board = new Board(0, 0, this);
+		Main.getInstance().set__board(board);
+		//}
+		//else {
+		//	board.reset(this);
+		//}
         view.addChildAt(new SpriteContainer(board), 0);
         //view.addChild(Main.getInstance().get__board())
         view.addEventListener(Event.ENTER_FRAME, onEnter);
@@ -46,6 +52,13 @@ class GameScene extends FullScreen {
         //Last trigger the event that the game starts
         //systemEvents.LOAD_LEVEL.dispatch(new Level(level));
     }
+	
+	public override function close() {
+		view.removeEventListener(Event.ENTER_FRAME, onEnter);
+		view.removeChildAt(0, true);
+		super.close();
+		
+	}
 
     private function onEnter(_)  {
         var now = Timer.stamp();

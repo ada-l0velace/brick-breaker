@@ -17,7 +17,7 @@ class Brick extends StaticObject {
         this.x = xCord;
         this.y = yCord;
         draw();
-        addEventListener(Event.ENTER_FRAME, enterFrameEvents);
+        //addEventListener(Event.ENTER_FRAME, enterFrameEvents);
         //addEventListener(Event.ENTER_FRAME, update);
     }
 
@@ -28,32 +28,27 @@ class Brick extends StaticObject {
             this.graphics.endFill();
         }
     }
-
-    private function enterFrameEvents(event:Event):Void{
-        //hit testing with the ball
-        var b:Ball = Main.getInstance().get__board().get__ball();
-        var i:Intersection;
-        i = checkColision(b);
-        b.bounce(i);
-        if(i != Intersection.NONE){
-            //making the ball bounce off vertically
-			//b.speed.y *= -1;
-            //b.speed.x *= -1;
-            var soundExt:String;
-            #if flash
-                soundExt= "mp3";
-            #else
-                soundExt= "ogg";
-            #end
-            Assets.getSound("assets/sounds/pickup."+soundExt).play();
-            hits++;
-            //destroying this brick
-            if (hits >= lives)
-                this.parent.removeChild(this);
-            destroyed = true;
-            //stop running this code
-            removeEventListener(Event.ENTER_FRAME, enterFrameEvents);
-        }
-    }
-
+	public override function update(delta_t:Float):Void {
+		if (!destroyed) {
+			var b:Ball = Main.getInstance().get__board().get__ball();
+			var i:Intersection;
+			i = checkColision(b);
+			b.bounce(i);
+			if(i != Intersection.NONE){
+			    var m:Main = Main.getInstance();
+				var b:Board = m.get__board();
+				hits++;
+				b.bricksDestroyed++;
+				//destroying this brick
+				b.gameSound.brickSound();
+				if (hits >= lives) {
+					b.set_score(b.get_score()+200);
+					//this.parent.removeChild(this);
+					visible = false;
+				}
+				
+				destroyed = true;
+			}
+		}
+	}
 }

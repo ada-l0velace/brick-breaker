@@ -15,7 +15,7 @@ class GameObject extends Sprite {
     public function draw():Void {}
     public function update(delta_t:Float):Void {}
     public function move(x:Float, y:Float):Void {}
-    public function checkColision(other:GameObject):Intersection {
+    private function checkColision(other:GameObject):Intersection {
         if (other.x > x + widthO
         || other.y > y + heightO
         || other.x + other.widthO  < x

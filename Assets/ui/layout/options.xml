@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<vbox width="100%">
+    <spacer height="10" />
+
+    <grid columns="2" width="100%">
+    
+        <spacer width="200" />
+        <spacer width="0" />
+
+        <text text="Display mode" />
+        <hbox >
+            <optionbox text="Window" group="group1" selected="true"/>
+        </hbox>
+
+        <text text="Sound effects" />
+        <hbox >
+            <optionbox text="On" group="group2" id="volume"/>
+            <optionbox text="Off" group="group2" selected="true"/>
+        </hbox>
+
+    </grid>
+    
+    <spacer height="10" />
+    <divider text="Advanced settings" />
+
+
+    <grid columns="2" width="100%">
+
+        <spacer width="200" />
+        <spacer width="0" />
+
+        <text text="Debug-Mode" />
+        <checkbox id="debug"/>
+
+    </grid>
+
+</vbox>
