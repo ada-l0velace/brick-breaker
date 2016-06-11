@@ -7,7 +7,7 @@ class Constants {
     //Window Size
     public static inline var WINDOW_WIDTH:Int = 600;
     public static inline var WINDOW_HEIGHT:Int = 700;
-	public static inline var WINDOW_X_START:Int = 500 + 600;
+	public static inline var WINDOW_X_START:Int = 0 + 600;
     public static inline var WINDOW_Y_START:Int = 700;
 
     //Lives
@@ -30,7 +30,7 @@ class Constants {
     public static inline var PADDLE_HEIGHT:Float = 30;
     public static inline var PADDLE_RIGHT_BOUND:Float = 430;
 	
-    public static inline var PADDLE_X_START:Float = 500 + WINDOW_WIDTH/2 - PADDLE_WIDTH/2;
+    public static inline var PADDLE_X_START:Float = 0 + WINDOW_WIDTH/2 - PADDLE_WIDTH/2;
     public static inline var PADDLE_Y_START:Float = WINDOW_HEIGHT - PADDLE_HEIGHT -10;
 	
     public static inline var PADDLE_MIN:Float = 35;
@@ -39,7 +39,7 @@ class Constants {
     //Bricks
     public static inline var BRICK_WIDTH:Float = 118;
     public static inline var BRICK_HEIGHT:Float = 25;
-	public static inline var BRICK_X_START:Float = 500;
+	public static inline var BRICK_X_START:Float = 0;
     public static inline var BRICK_Y_START:Float = 0 + UI_TOP_WINDOW_HEIGHT;
     public static inline var MAX_BRICKS:Float = 50;
     public static inline var NO_BRICKS:Float = 0;
@@ -47,16 +47,16 @@ class Constants {
     //Walls
     public static inline var WALL_COLOR:Int = 0x000000;
 	
-    public static inline var TOP_WALL_X_START:Float = 500;
+    public static inline var TOP_WALL_X_START:Float = 0;
     public static inline var TOP_WALL_Y_START:Float = 0 + UI_TOP_WINDOW_HEIGHT;
 
-    public static inline var BOT_WALL_X_START:Float = 500;
+    public static inline var BOT_WALL_X_START:Float = 0;
     public static inline var BOT_WALL_Y_START:Float = WINDOW_HEIGHT-10;
 
-    public static inline var RIGHT_WALL_X_START:Float = 500 +WINDOW_WIDTH-10;
+    public static inline var RIGHT_WALL_X_START:Float = 0 +WINDOW_WIDTH-10;
     public static inline var RIGHT_WALL_Y_START:Float = 0 + UI_TOP_WINDOW_HEIGHT;
 
-    public static inline var LEFT_WALL_X_START:Float = 500;
+    public static inline var LEFT_WALL_X_START:Float = 0;
     public static inline var LEFT_WALL_Y_START:Float = 0 + UI_TOP_WINDOW_HEIGHT;
 
 }

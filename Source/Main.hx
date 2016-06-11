@@ -1,18 +1,15 @@
 package ;
-import scene.LevelMenu;
-import scene.Scene;
-import scene.GameScene;
+
 import openfl.Lib;
 import openfl.display.Sprite;
-import openfl.events.Event;
-import openfl.display.StageDisplayState;
 import haxe.ui.toolkit.core.Toolkit;
-import openfl.Assets;
-import openfl.display.Bitmap;
-import openfl.display.BitmapData;
 import haxe.ui.toolkit.core.Macros;
 
 import scene.MainMenu;
+
+import haxe.ui.toolkit.style.StyleManager;
+import haxe.ui.toolkit.style.Style;
+
 
 class Main extends Sprite {
 

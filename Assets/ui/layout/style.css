@@ -29,51 +29,39 @@
     fontSize: 30;
 }
 
-
-#car-wrapper{
-    verticalAlignment: center;
-    horizontalAlignment: right;
-    width: 40%;
-}
-
-#car{
-    verticalAlignment: left;
-}
-
-
-
 Button {
+    fontName: "SquareFont";
     fontSize: 20;
-    background-color: 0xff9600;
+    background-color: #ff9600;
     paddingBottom: 10;
     paddingTop: 10;
     border-spacing: 10;
-    border-color: 0x333333;
+    border-color: #333333;
 	
 }
 
 Button:over{
     fontSize: 20;
-	background-color: 0xffb300;
+	background-color: #ffb300;
     paddingBottom: 10;
     paddingTop: 10;
-    border-color: 0x333333;
+    border-color: #333333;
 }
 
 Button:disabled{
     fontSize: 20;
-	background-color: 0x4D1E00;
+	background-color: #4D1E00;
     paddingBottom: 10;
     paddingTop: 10;
-    border-color: 0x333333;
+    border-color: #333333;
 }
 
 Button:down{
     fontSize: 20;
-	background-color: 0xCF5300;
+	background-color: #CF5300;
     paddingBottom: 10;
     paddingTop: 10;
-    border-color: 0x333333;
+    border-color: #333333;
 }
 
 

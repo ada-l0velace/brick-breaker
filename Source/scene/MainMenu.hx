@@ -30,10 +30,7 @@ class MainMenu extends FullScreen  {
         //Layout
 		var gs:GameSound = new GameSound();
         view = Toolkit.processXmlResource("assets/ui/layout/main-menu.xml");
-		
-        var container: Container = view.findChild("title", Container, true);
-		container.addChild(new LogoTextField("Brick Breaker", 55,  222).result());
-        //trace("WTF");
+
         //onClick-Events
 		var start:Button = view.findChild("start", Button, true);
 		var options:Button = view.findChild("options", Button, true);

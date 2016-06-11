@@ -1,4 +1,4 @@
-package;
+package ;
 
 /*  OpenFL Preloader
  *  @version 1.2
@@ -9,7 +9,6 @@ package;
 
 import openfl.Lib;
 import openfl.display.Stage;
-import openfl.display.Sprite;
 import openfl.text.Font;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
@@ -28,11 +27,10 @@ import openfl.display.BitmapData;
 // please provide this files (or change them) in your assets folder
 // and add this line to your project.xml
 // <assets path="assets/preloader" include="*" if="web" />
-@:font("assets/preloader/square.ttf") class DefaultFont extends Font {}
-@:bitmap("assets/preloader/logo.png") class Splash extends BitmapData {}
+@:font("Assets/preloader/Square.ttf") class DefaultFont extends Font {}
+@:bitmap("Assets/preloader/logo.png") class Splash extends BitmapData {}
 
-class Preloader extends NMEPreloader
-{
+class Preloader extends NMEPreloader {
     // **** CUSTOMISE HERE ****
     static var color = 0xff9600; //the main color
     static var backgroundColor = 0x333333; //background color

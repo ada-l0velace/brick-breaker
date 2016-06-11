@@ -20,9 +20,7 @@ class LevelMenu extends FullScreen {
 		var gs:GameSound = new GameSound();
         //load and display UI
         view = Toolkit.processXmlResource("assets/ui/layout/level-menu.xml");
-		
-		var container: Container = view.findChild("title", Container, true);
-		container.addChild(new LogoTextField("Select a Level", 55,  135).result());
+
         var configuration: Configuration = new Configuration();
         var container: Grid = view.findChild("level-container", Grid, true);
 		

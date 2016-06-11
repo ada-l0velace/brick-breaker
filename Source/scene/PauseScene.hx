@@ -25,7 +25,6 @@ class PauseScene extends PopupScene {
         width = 300;
         title = "Pause game";
         buttons = [];
-		
 		//Layout
         view = Toolkit.processXmlResource("assets/ui/layout/pause.xml");
 		var resumeButton:Button = view.findChild("resume", Button, true);

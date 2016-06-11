@@ -3,7 +3,7 @@
 	<!--<launchImage path="Assets/openfl.png" /> -->
 	<window background="#000000" fps="60" />
 	<window width="0" height="0" unless="mobile" />
-	<window width="0" height="0" if="flash" />
+	<window width="0" height="0" />
 	<meta title="brickbreaker" package="com.sample.brickbreaker" version="1.0.0" company="Company Name" />
 	<app main="Main" path="Export" file="brickbreaker" preloader="Preloader" />
 
@@ -15,8 +15,7 @@
 	<haxelib name="openfl" />
 	<haxelib name="haxeui" />
 	<haxedef name="fdb" if="flash"/>
-	<icon path="assets/icons/rayIcon.svg" />
-	<asset path="assets/sounds" include="*.ogg" if="html5" />
-	<asset path="assets/sounds" include="*.mp3" if="flash" />
-	<assets path="assets/preloader" include="*" if="web" />
+	<assets path="Assets/sounds" include="*.ogg" if="html5" />
+	<assets path="Assets/sounds" include="*.mp3" if="flash" />
+	<assets path="Assets/preloader/" include="*" if="web" />
 </project>

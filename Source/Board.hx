@@ -4,7 +4,7 @@ import Constants as C;
 import scene.PauseScene;
 import scene.Scene;
 import scene.GameBeatenScene;
-
+import haxe.ui.toolkit.containers.SpriteContainer;
 import debug.FpsMem;
 import haxe.ui.toolkit.controls.Text;
 import flash.Lib;
@@ -20,9 +20,7 @@ class Board extends Sprite {
     @:isVar var _ball(get, null):Ball;
 	@:isVar var score(get, set):Int;
 	@:isVar var scene(get, set):Scene;
-   
-    var _height:Int;
-    var _width:Int;
+
     var _gameObjects:List<GameObject>;
     var _paddle:Paddle;
 	
@@ -46,34 +44,13 @@ class Board extends Sprite {
     var _keys:Map<Int, Bool> = new Map<Int,Bool>();
     var _stage = Lib.current.stage;
 
-    var default_bg_color:Int =  0x333333;
-	
-    var bgshape:Sprite;
 
-    private function initBG() {
-        bgshape = new Sprite();
-        bgshape.graphics.beginFill(default_bg_color);
-        bgshape.graphics.drawRect(0,0,_stage.stageWidth, _stage.stageHeight);
-        addChildAt(bgshape, 0);
-        _stage.addEventListener(Event.RESIZE, resizeBGWithStage);
-    }
-    private function changeBGColor(color:Int) {
-        bgshape.graphics.beginFill(color);
-        bgshape.graphics.drawRect(0,0,_stage.stageWidth, _stage.stageHeight);
-    }
-    private function resizeBGWithStage(e:Event) {
-
-        bgshape.width = _stage.stageWidth;
-        bgshape.height = _stage.stageHeight;
-    }
-	
 	private function init(sc:Scene) {
 		Lib.current.stage.focus = this;
 		_gameObjects = new List<GameObject>();
 		score = 0;
 		running = true;
 		_start = true;
-        initBG();
         createPaddle();
         createWalls();
         createBricks();
