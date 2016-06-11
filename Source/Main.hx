@@ -2,6 +2,7 @@ package ;
 
 import openfl.Lib;
 import openfl.display.Sprite;
+import openfl.Assets;
 import haxe.ui.toolkit.core.Toolkit;
 import haxe.ui.toolkit.core.Macros;
 
@@ -40,9 +41,11 @@ class Main extends Sprite {
         Toolkit.theme = new  haxe.ui.toolkit.themes.GradientTheme();
         Toolkit.init();
         Macros.addStyleSheet("Assets/ui/layout/style.css"); //Stylesheet 
-
+		Macros.addStyle("Button", "fontName:'SquareFont'; fontEmbedded:true");
+		Macros.addStyle("Text", "fontName:'SquareFont'; fontEmbedded:true");
         //Show Start Menu
         new MainMenu().show();
+		
         //new GameScene(0).show();
         //new LevelMenu().show();
         //new GameScene(3).show();

@@ -2,7 +2,7 @@ package scene;
 
 import haxe.ui.toolkit.core.Toolkit;
 import haxe.ui.toolkit.containers.SpriteContainer;
-import haxe.ui.toolkit.containers.Box;
+import haxe.ui.toolkit.containers.HBox;
 import haxe.ui.toolkit.controls.Text;
 import Main;
 import haxe.Timer;
@@ -40,7 +40,7 @@ class GameScene extends FullScreen {
 		//else {
 		//	board.reset(this);
 		//}
-        view.findChild("board", Box, true).addChildAt(new SpriteContainer(board), 0);
+        view.findChild("board", HBox, true).addChildAt(new SpriteContainer(board), 0);
         //view.addChild(Main.getInstance().get__board())
         view.addEventListener(Event.ENTER_FRAME, onEnter);
 
