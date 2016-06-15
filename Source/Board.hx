@@ -14,12 +14,25 @@ import openfl.events.KeyboardEvent;
 import openfl.Assets;
 import flash.geom.Point;
 import haxe.ui.toolkit.containers.SpriteContainer;
-
+import box2D.collision.shapes.B2CircleShape;
+import box2D.collision.shapes.B2PolygonShape;
+import box2D.common.math.B2Vec2;
+import box2D.dynamics.B2Body;
+import box2D.dynamics.B2BodyDef;
+import box2D.dynamics.B2DebugDraw;
+import box2D.dynamics.B2FixtureDef;
+import box2D.dynamics.B2World;
+import box2D.dynamics.B2BodyType;
+import openfl.Vector.Vector;
 class Board extends Sprite {
 
     @:isVar var _ball(get, null):Ball;
 	@:isVar var score(get, set):Int;
 	@:isVar var scene(get, set):Scene;
+
+    var world:B2World;
+    var groundBodyDef:B2BodyDef;
+
 
     var _gameObjects:List<GameObject>;
     var _paddle:Paddle;
@@ -45,7 +58,36 @@ class Board extends Sprite {
     var _stage = Lib.current.stage;
 
 
+    private var worldScale:Float = 30;
+    private var sphereVector:Vector<B2Body>;
+    private var blobX:Float;
+    private var blobY:Float;
+    private var particleNumber:Int = 20;
+    private var particleDistance:Float = 50;
+
 	private function init(sc:Scene) {
+        x = 0;
+        y = 0;
+        /*blobX = Lib.current.stage.stageWidth / 2;
+        blobY = (Lib.current.stage.stageWidth / 2) - 100;
+
+        world = new B2World(new B2Vec2(0, 0), true);
+        debugDraw();
+
+        groundBodyDef = new B2BodyDef();
+        groundBodyDef.position.set(Constants.PADDLE_X_START+Constants.PADDLE_WIDTH, Constants.PADDLE_Y_START);
+        var groundBody:B2Body = world.createBody(groundBodyDef);
+        var groundBox:B2PolygonShape = new B2PolygonShape();
+        groundBox.setAsBox(Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT);
+
+        var fixtureDef:B2FixtureDef = new B2FixtureDef();
+        fixtureDef.shape = groundBox;
+        fixtureDef.density = 1;
+        fixtureDef.restitution = 0.4;
+        fixtureDef.friction = .05;
+        groundBody.createFixture(fixtureDef);
+        */
+
 		Lib.current.stage.focus = this;
 		_gameObjects = new List<GameObject>();
 		score = 0;
@@ -55,6 +97,8 @@ class Board extends Sprite {
         createWalls();
         createBricks();
         createBall();
+
+        //createBoundaries();
         for(go in _gameObjects)
             addChild(go);
         mLastStep = haxe.Timer.stamp();
@@ -63,6 +107,16 @@ class Board extends Sprite {
         Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
         sc.view.addEventListener(Event.ENTER_FRAME, update);
 	}
+    private function debugDraw():Void {
+        var debugDraw:B2DebugDraw = new B2DebugDraw();
+        var debugSprite:Sprite = new Sprite();
+        addChild(debugSprite);
+        debugDraw.setSprite(debugSprite);
+        debugDraw.setDrawScale(1);
+        debugDraw.setFlags(B2DebugDraw.e_shapeBit | B2DebugDraw.e_jointBit);
+        debugDraw.setFillAlpha(0.5);
+        world.setDebugDraw(debugDraw);
+    }
 
     public function new(width:Float, height:Float, sc:Scene) {
 		gameSound = new GameSound();
@@ -93,6 +147,24 @@ class Board extends Sprite {
 		
     }
 
+    private function createBoundaries():Void {
+
+    }
+
+
+    private function floor():Void {
+        var bodyDef:B2BodyDef = new B2BodyDef();
+        bodyDef.position.set(10, 20);
+        var polygonShape:B2PolygonShape = new B2PolygonShape();
+        polygonShape.setAsBox(122, 222);
+        var fixtureDef:B2FixtureDef = new B2FixtureDef();
+        fixtureDef.shape = polygonShape;
+        fixtureDef.restitution = 0.4;
+        fixtureDef.friction = 0.5;
+        var theFloor:B2Body = world.createBody(bodyDef);
+        theFloor.createFixture(fixtureDef);
+    }
+
     private function createBricks() {
         for(i in 0...5) {
             for(j in 0...5) {
@@ -113,6 +185,10 @@ class Board extends Sprite {
     }
 
     private function update(evt:Event):Void {
+        /*world.step(1 / 60, 10, 10);
+        world.clearForces();
+        world.drawDebugData();
+		*/
 		if(!delete) {
 			var now = haxe.Timer.stamp();
 			var delta_t = now - mLastStep;

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <box width="100%" height="100%" style='background-color:0x333333'>
 
-    <vbox width="600" id="" verticalAlign="center" horizontalAlign="center">
-        <text text="Brick Breaker" verticalAlign="top" horizontalAlign="center" style="fontSize:100; color:0xff9600;"/>
+    <vbox width="50%" id="menu-box" verticalAlign="center" horizontalAlign="center">
+        <text id="title" text="Brick Breaker" verticalAlign="top" horizontalAlign="center"
+              style="color:0xff9600; fontSize:100%"/>
         <button id="start" text="Start"  width="100%" style="fontSize: 20; paddingBottom: 10; paddingTop: 40"/>
         <button id="options" text="Options" width="100%" style="fontSize: 20; paddingBottom: 10; paddingTop: 40" />
         <button id="about" text="About" width="100%" style="fontSize: 20; paddingBottom: 10; paddingTop: 40" />

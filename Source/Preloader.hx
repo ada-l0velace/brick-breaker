@@ -16,7 +16,6 @@ import openfl.text.TextFieldAutoSize;
 import openfl.events.Event;
 import openfl.events.MouseEvent;
 import openfl.net.URLRequest;
-
 //*SPLASH*import for the top picture
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
@@ -48,7 +47,7 @@ class Preloader extends NMEPreloader {
 
     var ww:Float; //current window width
     var hh:Float; //current window height
-
+    var bmp:Splash;
     var textPercent:TextField; // percentage label
     var textLoading:TextField; // loading label
 
@@ -60,21 +59,19 @@ class Preloader extends NMEPreloader {
     var splashHeight:Float;
 
     public function new () {
-
         super ();
-
         init ();
-
-        //first resize and listener
-        stage_onResize(null);
+        // listener to finish event
+        #if flash
+            stage_onResize(null);
+        #end
         Lib.current.stage.addEventListener(Event.RESIZE, stage_onResize);
         Lib.current.stage.addEventListener(Event.ENTER_FRAME, onFrame);
         Lib.current.stage.addEventListener(MouseEvent.CLICK, gotoWebsite, false, 0, true);
-
-        // listener to finish event
         addEventListener(Event.COMPLETE, onComplete);
 
     }
+
     public function onComplete (event:Event):Void {
         // restore original background color
         Lib.current.stage.color = originalBackgroundColor;
@@ -91,11 +88,23 @@ class Preloader extends NMEPreloader {
         originalBackgroundColor = Lib.current.stage.color;
         Lib.current.stage.color = backgroundColor;
 
+        #if html5
+            bmp = new Splash(0,0, function(bmp:BitmapData) {
+                stage_onResize(null);
+                splashHeight = bmp.height;
+            });
+        #else
+            bmp = new Splash(0,0);
+        #end
         //*SPLASH* Prepare the top picture
-        splash = new Bitmap(new Splash(0,0));
+        splash = new Bitmap(bmp);
         splash.smoothing = true;
+        //var m:Matrix = new Matrix();
+        //m.scale(scale, scale);
+        //bmp.draw(splash, m);
         addChild(splash); //add the logo
-        splashHeight = splash.height;
+
+
 
         //prepare the percent label
         textPercent = new TextField();
@@ -110,6 +119,7 @@ class Preloader extends NMEPreloader {
         textLoading.selectable = false;
         textLoading.text = stringLoading;
         addChild(textLoading);
+        //resize (Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
     }
 
 
@@ -132,19 +142,12 @@ class Preloader extends NMEPreloader {
         var x = (ww-w)/2;   //centered (center bar position x,y)
         var y = hh*0.8;
 
-		#if flash
-			
-			//*SPLASH* Resize the picture
-			var scale:Float = hh / 2 / splashHeight;
-			splash.scaleX = scale;
-			splash.scaleY = scale;
-			splash.x = ww/2-splash.width/2;
-			splash.y = hh/3-splash.height/2;
-        #else
-			splash.x = ww/3-splash.width/2;
-			splash.y = hh/9-splash.height/2;
-		#end
-
+        //*SPLASH* Resize the picture
+        var scale:Float = hh / 2 / splash.height;
+        splash.scaleX = scale;
+        splash.scaleY = scale;
+        splash.x = ww/2-splash.width/2;
+        splash.y = hh/3-splash.height/2;
         outline.x = x-p;
         outline.y = y-p;
         outline.graphics.clear();

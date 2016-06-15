@@ -4,7 +4,7 @@
 	<window background="#000000" fps="60" />
 	<window width="0" height="0" unless="mobile" />
 	<window width="0" height="0" />
-	<meta title="brickbreaker" package="com.sample.brickbreaker" version="1.0.0" company="Company Name" />
+	<meta title="brickbreaker" package="" version="1.0.0" company="Company Name" />
 	<app main="Main" path="Export" file="brickbreaker" preloader="Preloader" />
 
 	<source path="Source" />
@@ -14,8 +14,11 @@
 	<haxelib name="actuate" />
 	<haxelib name="openfl" />
 	<haxelib name="haxeui" />
+	<haxelib name="box2d" />
 	<haxedef name="fdb" if="flash"/>
-	<assets path="Assets/sounds" include="*.ogg" if="html5" />
-	<assets path="Assets/sounds" include="*.mp3" if="flash" />
+
+
+	<assets path="Assets/sounds" rename="sound" include="*.mp3" if="flash" />
+	<assets path="Assets/sounds" rename="sound" include="*.ogg" unless="flash" />
 	<assets path="Assets/preloader/" include="*" if="web" />
 </project>

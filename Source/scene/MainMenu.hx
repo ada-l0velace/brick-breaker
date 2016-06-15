@@ -1,25 +1,14 @@
 package scene;
 
-
+import openfl.Lib;
 import haxe.ui.toolkit.events.UIEvent;
 import haxe.ui.toolkit.controls.Button;
+import haxe.ui.toolkit.controls.Text;
 import haxe.ui.toolkit.core.Toolkit;
-import flash.events.Event;
-import openfl.Assets;
-import openfl.media.Sound;
-
-import openfl.Lib;
-import openfl.display.Stage;
-import openfl.display.Sprite;
-import openfl.text.Font;
-import openfl.text.TextField;
-import openfl.text.TextFormat;
-import openfl.text.TextFieldAutoSize;
-import openfl.events.Event;
-import openfl.events.MouseEvent;
-import openfl.net.URLRequest;
 import haxe.ui.toolkit.containers.Container;
-import openfl.system.System;
+import haxe.ui.toolkit.containers.VBox;
+import haxe.ui.toolkit.style.StyleManager;
+
 /**
 * Main Menu
 **/
@@ -48,8 +37,13 @@ class MainMenu extends FullScreen  {
         options.onMouseOver = function(e:UIEvent){ gs.buttonOverSound();  };
         about.onMouseOver = function(e:UIEvent){ gs.buttonOverSound();   /*new AboutScene().show();*/    };
         /*quit.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };*/
-		
-		new LogoTextField("Brick Breaker", (Lib.current.stage.stageWidth - 0.9 * Lib.current.stage.stageWidth) / 2,  Lib.current.stage.stageHeight * 0.3);
+        view.addEventListener(UIEvent.RESIZE, function(e:UIEvent) {
+            //view.
+            //trace(StyleManager.instance.findStyle("#title").fontSize);
+            //StyleManager.instance.findStyle("#title");
+            //trace(StyleManager.instance.findStyle("#title").fontSize);
+            view.findChild("title", Text, true).style.fontSize=view.findChild("menu-box", VBox, true).width*0.147;
+        });
 		//view.addChild(new LogoTextField("Brick Breaker", (Lib.current.stage.stageWidth-0.9 * Lib.current.stage.stageWidth)/2,  Lib.current.stage.stageHeight*0.3).result());
 		
 		

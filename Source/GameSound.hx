@@ -6,7 +6,7 @@ import openfl.media.SoundChannel;
 import openfl.events.Event;
 
 class GameSound {
-	
+	public static inline var SOUND_EXT:String = #if flash ".mp3" #else ".ogg" #end ;
 	private var SOUND_BRICK: Sound;
     private var SOUND_IDLE: Sound;
 	private var SOUND_BUTTON_OVER: Sound;
@@ -15,15 +15,10 @@ class GameSound {
     public function new() {
 		var path:String = "assets/sounds/";
         var soundExt:String;
-        #if flash
-        soundExt= "mp3";
-        #else
-        soundExt= "ogg";
-        #end
-        SOUND_IDLE = Assets.getSound(path + "What-Is-Love" + "." + soundExt);
-		SOUND_BRICK = Assets.getSound(path + "household038" + "." + soundExt);
-		SOUND_BUTTON_OVER = Assets.getSound(path + "click_and_slide" + "." + soundExt);
-		SOUND_BUTTON_CLICK = Assets.getSound(path + "household038" + "." + soundExt);
+        SOUND_IDLE = Assets.getSound(path + "What-Is-Love" + SOUND_EXT);
+		SOUND_BRICK = Assets.getSound(path + "household038" + SOUND_EXT);
+		SOUND_BUTTON_OVER = Assets.getSound(path + "click_and_slide" + SOUND_EXT);
+		SOUND_BUTTON_CLICK = Assets.getSound(path + "household038" + SOUND_EXT);
         
     }
 	public function onMainMenu() : Void {

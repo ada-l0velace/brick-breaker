@@ -2,7 +2,7 @@ package ;
 
 import openfl.Lib;
 import openfl.display.Sprite;
-import openfl.Assets;
+
 import haxe.ui.toolkit.core.Toolkit;
 import haxe.ui.toolkit.core.Macros;
 
@@ -36,7 +36,6 @@ class Main extends Sprite {
         STAGE_HEIGHT_CENTER = stage.stageHeight;
         STAGE_WIDTH_CENTER = stage.stageWidth;
 
-        //_board = new Board(stage.stageWidth, stage.stageHeight);
         //Initialize HaxeUI Library
         Toolkit.theme = new  haxe.ui.toolkit.themes.GradientTheme();
         Toolkit.init();
@@ -45,11 +44,6 @@ class Main extends Sprite {
 		Macros.addStyle("Text", "fontName:'SquareFont'; fontEmbedded:true");
         //Show Start Menu
         new MainMenu().show();
-		
-        //new GameScene(0).show();
-        //new LevelMenu().show();
-        //new GameScene(3).show();
-        //this.addChild(_board);
     }
 
     public static function getInstance():Main {
@@ -63,5 +57,4 @@ class Main extends Sprite {
 		Lib.current.stage.scaleMode = openfl.display.StageScaleMode.NO_SCALE;
         Lib.current.addChild(getInstance());
     }
-	
 }

@@ -1,16 +1,15 @@
 import scene.LevelMenu;
 import flash.geom.Point;
-import flash.events.Event;
-import openfl.Assets;
-import openfl.media.Sound;
 
 class Ball extends DynamicObject {
 
     var color:Int;
+    var radius:Int;
 	// 4 5
     public function new(xCord:Float, yCord:Float, color:Int) {
-        super(30, 30, new Point(0, 0), 120);
+        super(20, 20, new Point(0, 0), 120);
         this.color = color;
+        this.radius = 10;
         draw();
         this.x = xCord;
         this.y = yCord;
@@ -18,7 +17,7 @@ class Ball extends DynamicObject {
 
     public override function draw():Void {
         this.graphics.beginFill(color);
-        this.graphics.drawCircle(0, 0, 10);
+        this.graphics.drawCircle(0, 0, radius);
         this.graphics.endFill();
     }
 
@@ -39,22 +38,23 @@ class Ball extends DynamicObject {
         var topW:Wall = Main.getInstance().get__board()._topWall;
 
         //if the ball hits the right side
-        if (this.x >= topW.widthO + topW.x && speed.x > 0) {
+        if (this.x >= topW.widthO + topW.x - widthO && speed.x > 0) {
             speed.x *= -1.2;
         }
         //if the ball hits the left side
-        if (this.x  <= leftW.x && speed.x <= 0) {
+        if (this.x  <= leftW.x + widthO && speed.x <= 0) {
             speed.x *= -1.2;
         }
         //if the ball hits the bottom
-        if(this.y >= rightW.heightO + rightW.y && speed.y > 0) {
+        if(this.y >= rightW.heightO + rightW.y - heightO && speed.y > 0) {
 			speed.y *= -1;
+            //(Board) parent.remove();
 			Main.getInstance().get__board().remove();
             //Assets.getSound("assets/sounds/gameover.ogg").play();
 			new LevelMenu().show();
         }
         //if the ball hits the top
-        if (this.y <= topW.y && speed.y < 0) {
+        if (this.y <= topW.y + heightO && speed.y < 0) {
             speed.y *= -1;
         }
     }

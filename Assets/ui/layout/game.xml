@@ -13,10 +13,10 @@
                     <text id="score" style="fontSize: 20; fontBold: true; color: #FFFFFF;" verticalAlign="top" />
                     <text id="balls-remaining" style="fontSize: 20; color: #FFFFFF; alpha: 0.7;" verticalAlign="top"/>
                 </hbox>
-                <hbox>
+                <vbox>
                     <text id="fps" style="fontSize: 20; fontBold: true; color: #FFFFFF;" />
                     <text id="total-memory" style="fontSize: 22; color: #FFFFFF; alpha: 0.7;"  verticalAlign="bottom"/>
-                </hbox>
+                </vbox>
                 <hbox id="board">
                 </hbox>
             </vbox>
