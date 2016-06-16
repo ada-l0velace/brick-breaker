@@ -29,6 +29,7 @@ class Brick extends StaticObject {
 			img.width = widthO;
 			img.height = heightO;
 			addChild(img);
+			
 			/*
             this.graphics.beginFill(color);
             this.graphics.drawRect(0, 0, widthO, heightO);
