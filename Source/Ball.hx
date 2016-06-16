@@ -69,14 +69,30 @@ class Ball extends DynamicObject {
         //Gets the hitPercent and makes it a larger number so the
         //ball actually bounces
         //speed.x = hitPercent * 1.5;
-		trace(ballPosition + " " + paddle.widthO + " " + paddle.x + " " + x);
-		if ((ballPosition / (paddle.widthO) > 0.5))
+        var relativeIntersectY = paddle.x + (paddle.widthO / 2) - x;
+        var normRelativeIntersectionY = normalizeAngle(relativeIntersectY);
+        var bounceAngle = normRelativeIntersectionY;
+        trace(relativeIntersectY);
+        speed.x = -Math.sin(bounceAngle * (Math.PI / 180)) * 4;
+        if (speed.y > 0)
+            speed.y = -Math.cos(bounceAngle * (Math.PI / 180)) * 5;
+        //trace(speed.x + " " + speed.y);
+
+        /*if ((ballPosition / (paddle.widthO) > 0.5))
 			speed.x = Math.round((ballPosition / paddle.widthO + 0.8)) *2.25;
 		else 
 			speed.x = Math.round((ballPosition / paddle.widthO - 0.8)) *2.25;
 		//Making the ball bounce back up
 		if (speed.y > 0)
-			speed.y *= -1;
+			speed.y *= -1;*/
+    }
+
+    public function normalizeAngle(angle:Float):Float {
+        angle = angle % 360;
+        angle = (angle + 360) % 360;
+        if(angle > 180)
+            angle -= 360;
+        return angle;
     }
 
 }

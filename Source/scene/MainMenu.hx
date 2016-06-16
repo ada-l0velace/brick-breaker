@@ -38,14 +38,9 @@ class MainMenu extends FullScreen  {
         about.onMouseOver = function(e:UIEvent){ gs.buttonOverSound();   /*new AboutScene().show();*/    };
         /*quit.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };*/
         view.addEventListener(UIEvent.RESIZE, function(e:UIEvent) {
-            //view.
-            //trace(StyleManager.instance.findStyle("#title").fontSize);
-            //StyleManager.instance.findStyle("#title");
-            //trace(StyleManager.instance.findStyle("#title").fontSize);
             view.findChild("title", Text, true).style.fontSize=view.findChild("menu-box", VBox, true).width*0.147;
         });
-		//view.addChild(new LogoTextField("Brick Breaker", (Lib.current.stage.stageWidth-0.9 * Lib.current.stage.stageWidth)/2,  Lib.current.stage.stageHeight*0.3).result());
-		
+
 		
     }
 

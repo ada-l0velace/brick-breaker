@@ -9,6 +9,8 @@ import haxe.ui.toolkit.style.StyleManager;
 import haxe.ui.toolkit.style.Style;
 import Configuration;
 import haxe.ui.toolkit.containers.Container;
+import haxe.ui.toolkit.containers.VBox;
+import haxe.ui.toolkit.controls.Text;
 /*
     Displays the Level menu in which you select the current level.
 */
@@ -23,8 +25,10 @@ class LevelMenu extends FullScreen {
 
         var configuration: Configuration = new Configuration();
         var container: Grid = view.findChild("level-container", Grid, true);
-		
-		
+
+        view.addEventListener(UIEvent.RESIZE, function(e:UIEvent) {
+            view.findChild("title", Text, true).style.fontSize=view.findChild("level-box", VBox, true).width*0.147;
+        });
         //Buttons for each level effort
         for (i in 0...configuration.TOTALLEVELS) {
             var button: Button = new Button();
