@@ -153,9 +153,9 @@ class Preloader extends NMEPreloader {
         outline.graphics.clear();
         outline.graphics.lineStyle(t, color, 1, true);
         outline.graphics.drawRoundRect(0,0,w+2*p,h+2*p,r*2,r*2);
-		progress.x = x;
-		progress.y = y;
-		progress.scaleX = 1;
+        progress.x = x;
+        progress.y = y;
+        progress.scaleX = 1;
         progress.graphics.clear();
         progress.graphics.beginFill(color, 0.5);
         progress.graphics.drawRoundRect(0,0,w,h,r,r);
@@ -167,7 +167,7 @@ class Preloader extends NMEPreloader {
         textLoading.autoSize = TextFieldAutoSize.CENTER;
         textLoading.x = ww/2-textLoading.textWidth/2;
         textLoading.y = y-textLoading.textHeight-0.5*h;
-		
+        
         var formatPercent = new TextFormat ("SquareFont", Std.int(hh/20), color);
         textPercent.defaultTextFormat = formatPercent; //dynamic text
         textPercent.setTextFormat(formatPercent); //static text
@@ -177,11 +177,11 @@ class Preloader extends NMEPreloader {
 
     }
 
-	public override function onUpdate(bytesLoaded:Int, bytesTotal:Int)
-	{
+    public override function onUpdate(bytesLoaded:Int, bytesTotal:Int)
+    {
         // calculate the percent loaded
-		var percentLoaded = bytesLoaded / bytesTotal;
-		if (percentLoaded > 1) percentLoaded = 1;
+        var percentLoaded = bytesLoaded / bytesTotal;
+        if (percentLoaded > 1) percentLoaded = 1;
 
         // update the percent label
         textPercent.text = Std.int(percentLoaded*100) + "%";
@@ -189,10 +189,10 @@ class Preloader extends NMEPreloader {
 
         // update the progress bar
         progress.graphics.clear();
-		progress.graphics.beginFill(color, 0.8);
+        progress.graphics.beginFill(color, 0.8);
         progress.graphics.drawRoundRect(0,0,percentLoaded*w,h,r,r);
         progress.graphics.endFill();
-	}
+    }
 
     private static inline var SKIP_FRAMES:Int=5;
     private var _skipped_frames:Int=1;

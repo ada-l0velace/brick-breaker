@@ -13,9 +13,6 @@ import openfl.events.Event;
  * ...
  * @author 
  */
-
-
-
 class LogoTextField {
 
     static var color = 0xff9600; //the main color

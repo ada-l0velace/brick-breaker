@@ -12,24 +12,24 @@ import openfl.Lib;
 //import app.math.Time;
 
 /**
-    Pause menu appears when the player presses the escape key.
-*/
+*  Pause menu appears when the player presses the escape key.
+**/
 class PauseScene extends PopupScene {
 
     public function new() {
-		var gs:GameSound = new GameSound();
+        var gs:GameSound = new GameSound();
         super();
-		var b:Board = Main.getInstance().get__board();
-		
+        var b:Board = Main.getInstance().get__board();
+        
         //Set Preferences
         width = 300;
         title = "Pause game";
         buttons = [];
-		//Layout
+        //Layout
         view = Toolkit.processXmlResource("assets/ui/layout/pause.xml");
-		var resumeButton:Button = view.findChild("resume", Button, true);
-		var mainMenu:Button = view.findChild("main-menu", Button, true);
-		var restart:Button = view.findChild("restart", Button, true);
+        var resumeButton:Button = view.findChild("resume", Button, true);
+        var mainMenu:Button = view.findChild("main-menu", Button, true);
+        var restart:Button = view.findChild("restart", Button, true);
 
         
 
@@ -39,7 +39,7 @@ class PauseScene extends PopupScene {
         mainMenu.onClick = function(e:UIEvent) { gs.buttonClickSound(); b.remove(); new MainMenu().show(); };
         restart.onClick = function(e:UIEvent) {  gs.buttonClickSound(); b.remove(); new GameScene(0).show(); };
 
-		 //Define Events for "Back to game"
+         //Define Events for "Back to game"
         resumeButton.onMouseOver = function(e:UIEvent){    gs.buttonOverSound();  };
         //Set the events for the main menu a nd reboot
         mainMenu.onMouseOver = function(e:UIEvent) { gs.buttonOverSound();  };

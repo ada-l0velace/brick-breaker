@@ -14,7 +14,7 @@ import haxe.ui.toolkit.core.Toolkit;
  */
 class GameBeatenScene extends FullScreen {
 
-	public function new() {
+    public function new() {
         super();
         var gs:GameSound = new GameSound();
         //Layout
@@ -22,10 +22,10 @@ class GameBeatenScene extends FullScreen {
 
 
         //onClick-Events
-		var mainMenu:Button = view.findChild("main-menu", Button, true);
+        var mainMenu:Button = view.findChild("main-menu", Button, true);
         mainMenu.onClick = function(e:UIEvent){ gs.buttonClickSound(); new MainMenu().show(); };
     
-		mainMenu.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };
-	}
-	
+        mainMenu.onMouseOver = function(e:UIEvent){ gs.buttonOverSound(); };
+    }
+    
 }

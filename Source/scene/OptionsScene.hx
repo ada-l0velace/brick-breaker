@@ -12,8 +12,8 @@ import haxe.ui.toolkit.controls.HSlider;
 import haxe.ui.toolkit.core.Toolkit;
 
 /**
-    Options window , in which the player can select settings .
-*/
+*    Options window , in which the player can select settings .
+**/
 class OptionsScene extends PopupScene {
 
     private var configuration: Configuration;
@@ -27,18 +27,18 @@ class OptionsScene extends PopupScene {
         buttons = [PopupButton.OK, PopupButton.CANCEL];
         configuration = new Configuration();
 
-		var gs:GameSound = new GameSound();
+        var gs:GameSound = new GameSound();
         //Load layout and set values
         view = loadOptions(Toolkit.processXmlResource("assets/ui/layout/options.xml"));
 
         //define the actions , if the OK button has been pressed
         callback = function(btn:Dynamic) {
             if (btn == PopupButton.OK) {
-				gs.buttonClickSound();
-				saveOptions(view); //Save configuration
-			}
-			else if (btn == PopupButton.CANCEL)
-				gs.buttonOverSound();
+                gs.buttonClickSound();
+                saveOptions(view); //Save configuration
+            }
+            else if (btn == PopupButton.CANCEL)
+                gs.buttonOverSound();
         };
 
 
