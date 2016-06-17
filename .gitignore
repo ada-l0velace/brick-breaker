@@ -8,3 +8,4 @@ Thumbs.db
 TestSuite.hx
 .mcover
 Export/
+.vscode
