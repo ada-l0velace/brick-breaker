@@ -9,3 +9,4 @@ TestSuite.hx
 .mcover
 Export/
 .vscode/
+hxml
