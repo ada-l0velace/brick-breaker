@@ -5,7 +5,7 @@ class Ball extends DynamicObject {
 
     var color:Int;
     var radius:Int;
-	// 4 5
+    // 4 5
     public function new(xCord:Float, yCord:Float, color:Int) {
         super(20, 20, new Point(0, 0), 120);
         this.color = color;
@@ -31,63 +31,51 @@ class Ball extends DynamicObject {
         }
     }
 
-    public override function move(x:Float, y:Float):Void{
+    public override function update(delta_t:Float) {
+        move(0,0);
+        super.update(delta_t);
+    }
+
+    public override function move(_:Float, _:Float):Void{
         var rightW:Wall = Main.getInstance().get__board()._rightWall;
         var leftW:Wall = Main.getInstance().get__board()._leftWall;
         var bottomtW:Wall = Main.getInstance().get__board()._bottomWall;
         var topW:Wall = Main.getInstance().get__board()._topWall;
 
         //if the ball hits the right side
-        if (this.x >= topW.widthO + topW.x - widthO && speed.x > 0) {
+        if (x >= topW.widthO + topW.x - widthO && speed.x > 0) {
             speed.x *= -1.2;
         }
         //if the ball hits the left side
-        if (this.x  <= leftW.x + widthO && speed.x <= 0) {
+        if (x  <= leftW.x + widthO && speed.x <= 0) {
             speed.x *= -1.2;
         }
         //if the ball hits the bottom
-        if(this.y >= rightW.heightO + rightW.y - heightO && speed.y > 0) {
-			speed.y *= -1;
+        if(y >= rightW.heightO + rightW.y - heightO && speed.y > 0) {
+            speed.y *= -1;
             //(Board) parent.remove();
-			Main.getInstance().get__board().remove();
+            Main.getInstance().get__board().remove();
             //Assets.getSound("assets/sounds/gameover.ogg").play();
-			new LevelMenu().show();
+            new LevelMenu().show();
         }
         //if the ball hits the top
-        if (this.y <= topW.y + heightO && speed.y < 0) {
+        if (y <= topW.y + heightO && speed.y < 0) {
             speed.y *= -1;
         }
     }
 
-    public function calcBallAngle(paddle:GameObject):Void{
+    public function calcBallAngle(paddle:GameObject): Void {
         var ballPosition:Int = Math.round(x - paddle.x);
-        //hitPercent converts ballPosition into a percent
-        //All the way to the left is -.5
-        //All the way to the right is .5
-        //The center is 0
-        //var hitPercent:Int = Math.round(((ballPosition / (paddle.widthO - 15)) - .5)*4);
-        //Gets the hitPercent and makes it a larger number so the
-        //ball actually bounces
-        //speed.x = hitPercent * 1.5;
         var relativeIntersectY = paddle.x + (paddle.widthO / 2) - x;
         var normRelativeIntersectionY = normalizeAngle(relativeIntersectY);
         var bounceAngle = normRelativeIntersectionY;
-        trace(relativeIntersectY);
         speed.x = -Math.sin(bounceAngle * (Math.PI / 180)) * 4;
+        //Making the ball bounce back up
         if (speed.y > 0)
             speed.y = -Math.cos(bounceAngle * (Math.PI / 180)) * 5;
-        //trace(speed.x + " " + speed.y);
-
-        /*if ((ballPosition / (paddle.widthO) > 0.5))
-			speed.x = Math.round((ballPosition / paddle.widthO + 0.8)) *2.25;
-		else 
-			speed.x = Math.round((ballPosition / paddle.widthO - 0.8)) *2.25;
-		//Making the ball bounce back up
-		if (speed.y > 0)
-			speed.y *= -1;*/
     }
 
-    public function normalizeAngle(angle:Float):Float {
+    private function normalizeAngle(angle:Float):Float {
         angle = angle % 360;
         angle = (angle + 360) % 360;
         if(angle > 180)

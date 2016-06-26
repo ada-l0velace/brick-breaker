@@ -1,15 +1,11 @@
 package scene;
 
-import openfl.Lib;
 import haxe.ui.toolkit.core.Toolkit;
 import haxe.ui.toolkit.events.UIEvent;
 import haxe.ui.toolkit.controls.Button;
 import haxe.ui.toolkit.containers.Grid;
-import haxe.ui.toolkit.style.StyleManager;
-import haxe.ui.toolkit.style.Style;
 import Configuration;
-import haxe.ui.toolkit.containers.Container;
-import haxe.ui.toolkit.containers.VBox;
+import haxe.ui.toolkit.containers.Box;
 import haxe.ui.toolkit.controls.Text;
 
 /**
@@ -28,7 +24,7 @@ class LevelMenu extends FullScreen {
         var container: Grid = view.findChild("level-container", Grid, true);
 
         view.addEventListener(UIEvent.RESIZE, function(e:UIEvent) {
-            view.findChild("title", Text, true).style.fontSize=view.findChild("level-box", VBox, true).width*0.147;
+            view.findChild("title", Text, true).style.fontSize=view.findChild("level-box", Box, true).width*0.147;
         });
         //Buttons for each level effort
         for (i in 0...configuration.TOTALLEVELS) {

@@ -1,5 +1,4 @@
-import flash.geom.Point;
-import flash.events.Event;
+
 
 class Wall extends StaticObject {
     var color:Int;

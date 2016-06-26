@@ -16,7 +16,7 @@ import openfl.events.Event;
 class LogoTextField {
 
     static var color = 0xff9600; //the main color
-	var splash:Sprite;
+    var splash:Sprite;
     var stringLoading:String;
     var ww:Float; //current window width
     var hh:Float; //current window height
@@ -33,14 +33,14 @@ class LogoTextField {
 
     }
 
-	public function new(name:String) {
+    public function new(name:String) {
         stringLoading = name;
         init();
         stage_onResize(null);
         Lib.current.stage.addEventListener(Event.RESIZE, stage_onResize);
         textLoading.addEventListener(Event.COMPLETE, onComplete);
         //addChild(textLoading);
-	}
+    }
 
     private function stage_onResize (event:Event):Void {
         resize (Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
@@ -66,9 +66,9 @@ class LogoTextField {
     public function onComplete (event:Event):Void {
         Lib.current.stage.removeEventListener(Event.RESIZE, stage_onResize);
     }
-	
-	public function result():SpriteContainer {
-		return new SpriteContainer(splash);
-	}
-	
+    
+    public function result():SpriteContainer {
+        return new SpriteContainer(splash);
+    }
+    
 }

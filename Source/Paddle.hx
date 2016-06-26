@@ -2,13 +2,20 @@ package ;
 import openfl.geom.Point;
 import openfl.events.Event;
 import openfl.Assets;
+import openfl.ui.Keyboard;
 import openfl.display.Bitmap;
 import openfl.display.Sprite;
 import openfl.display.Tilesheet;
 
 class Paddle extends DynamicObject {
     
-
+    public function new(xCord:Float, yCord:Float, width:Float, height:Float) {
+        super(width, height, new Point(0,0), 600);
+        draw();
+        x = xCord;
+        y = yCord;
+    }
+    
     public override function draw():Void {
         var img:Bitmap = new Bitmap(Assets.getBitmapData("assets/ui/paddle.png"));
         img.width = widthO;
@@ -20,11 +27,12 @@ class Paddle extends DynamicObject {
         this.graphics.endFill();*/
     }
 
-    public function new(xCord:Float, yCord:Float, width:Float, height:Float) {
-        super(width, height, new Point(0,0), 600);
-        draw();
-        x = xCord;
-        y = yCord;
+    public override function handleInput(keys:Map<Int,Bool>) {
+        move(0,0);
+        if (keys[Keyboard.RIGHT]) 
+            move(1,0);
+        else if (keys[Keyboard.LEFT])
+            move(-1,0);
     }
 
     public override function update(delta_t:Float) {
@@ -43,7 +51,7 @@ class Paddle extends DynamicObject {
             speed.x = 0;
         }
         var b:Ball = Main.getInstance().get__board().get__ball();
-        if(this.hitTestObject(b)){
+        if(this.hitTestObject(b)) {
             b.calcBallAngle(this);
         }
         super.update(delta_t);

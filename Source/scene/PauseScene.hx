@@ -1,15 +1,8 @@
 package scene;
 
 import haxe.ui.toolkit.core.Toolkit;
-import haxe.ui.toolkit.controls.Text;
 import haxe.ui.toolkit.controls.Button;
 import haxe.ui.toolkit.events.UIEvent;
-import openfl.events.KeyboardEvent;
-import openfl.ui.Keyboard;
-import openfl.Lib;
-
-//import app.entities.Level;
-//import app.math.Time;
 
 /**
 *  Pause menu appears when the player presses the escape key.

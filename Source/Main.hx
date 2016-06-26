@@ -16,8 +16,8 @@ class Main extends Sprite {
 
     static var _instance = null;
     @:isVar var _board(get, null):Board;
-	var currentScale:Float = 1; // scale factor used by the resize function
-	
+    var currentScale:Float = 1; // scale factor used by the resize function
+    
     public function set__board(value:Board) {
         return this._board = value;
     }
@@ -31,8 +31,8 @@ class Main extends Sprite {
 
     private function new() {
         super();
-		//first resize and listener
-		var stage = Lib.current.stage;
+        //first resize and listener
+        var stage = Lib.current.stage;
         STAGE_HEIGHT_CENTER = stage.stageHeight;
         STAGE_WIDTH_CENTER = stage.stageWidth;
 
@@ -40,8 +40,8 @@ class Main extends Sprite {
         Toolkit.theme = new  haxe.ui.toolkit.themes.GradientTheme();
         Toolkit.init();
         Macros.addStyleSheet("Assets/ui/layout/style.css"); //Stylesheet 
-		Macros.addStyle("Button", "fontName:'SquareFont'; fontEmbedded:true");
-		Macros.addStyle("Text", "fontName:'SquareFont'; fontEmbedded:true");
+        Macros.addStyle("Button", "fontName:'SquareFont'; fontEmbedded:true");
+        Macros.addStyle("Text", "fontName:'SquareFont'; fontEmbedded:true");
         //Show Start Menu
         new MainMenu().show();
     }
@@ -53,8 +53,8 @@ class Main extends Sprite {
     }
 
     public static function main() {
-		Lib.current.stage.align = openfl.display.StageAlign.TOP_LEFT;
-		Lib.current.stage.scaleMode = openfl.display.StageScaleMode.NO_SCALE;
+        Lib.current.stage.align = openfl.display.StageAlign.TOP_LEFT;
+        Lib.current.stage.scaleMode = openfl.display.StageScaleMode.NO_SCALE;
         Lib.current.addChild(getInstance());
     }
 }

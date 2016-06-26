@@ -31,15 +31,9 @@ class GameScene extends FullScreen {
         fps = view.findChild("fps", Text, true);
         memF = view.findChild("total-memory", Text, true);
         //The game will be added to the scene dynamically.
-        //view.addChild(new SpriteContainer(Main.getInstance().get__board()));
         var board:Board;
-        //if( (board = Main.getInstance().get__board()) == null) {
-        board = new Board(0, 0, this);
+        board = new Board(this, level);
         Main.getInstance().set__board(board);
-        //}
-        //else {
-        //	board.reset(this);
-        //}
         view.findChild("board", HBox, true).addChildAt(new SpriteContainer(board), 0);
         //view.addChild(Main.getInstance().get__board())
         view.addEventListener(Event.ENTER_FRAME, onEnter);
@@ -67,7 +61,7 @@ class GameScene extends FullScreen {
         while (times[0] < now - 1)
             times.shift();
 
-        trace(System.totalMemory);
+        //trace(System.totalMemory);
         var mem:Float = Math.round(System.totalMemory / 1024 / 1024 * 100)/100;
         if (mem > memPeak) memPeak = mem;
         fps.text = "FPS: " + times.length;
