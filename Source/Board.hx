@@ -40,7 +40,7 @@ class Board extends Sprite {
     public var running: Bool;
     var delete = false;
 
-    var level: Int;
+    public var level: Int;
 
     // Time of last step - for calculating time deltas...
     var mLastStep:Float;
@@ -132,6 +132,9 @@ class Board extends Sprite {
     private function isGameWon() {
         if (bricksDestroyed >= totalBricks) {
             remove();
+            var cf:Configuration = new Configuration();
+            cf.LEVEL++;
+            cf.save();
             new GameBeatenScene().show();
         }
     }
@@ -157,7 +160,7 @@ class Board extends Sprite {
         if(!delete) {
             graphics.clear();
             var now = haxe.Timer.stamp();
-            var delta_t = now - mLastStep;
+            var delta_t = now - mLastStep + level * 0.001;
             mLastStep = now;
             if (running) {
                 

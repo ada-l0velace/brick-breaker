@@ -16,19 +16,19 @@ class LevelLoading {
 
     public function new(board:Board) {
         this.board = board;
-        onLoadLevel();
+        onLoadLevel(board.level);
     }
 
 
 
 
     //Loads the level
-    private function onLoadLevel() : Void {
+    private function onLoadLevel(level:Int) : Void {
         //Set Current Level
         // this.level = null;
 
         //Parses the level
-        parseLevel(Json.parse( Assets.getText("assets/levels/level" + 0 + ".json") ));
+        parseLevel(Json.parse( Assets.getText("assets/levels/level" + level + ".json") ));
 
 
     }
@@ -49,8 +49,7 @@ class LevelLoading {
                     var src:String = (((j+i) % 2) == 0) ? "brick-red.png" : "dark-brick.png";
                     trace((j+0.1) * C.BRICK_WIDTH + C.BRICK_X_START);
                     board._gameObjects.add(new Brick((j+0.1) * C.BRICK_WIDTH + C.BRICK_X_START, (i+0.4) * C.BRICK_HEIGHT+C
-                    .BRICK_Y_START, src, C
-                    .BRICK_WIDTH, C.BRICK_HEIGHT));
+                    .BRICK_Y_START, src, C.BRICK_WIDTH, C.BRICK_HEIGHT));
                     board.totalBricks++;
                 }
                 j++;

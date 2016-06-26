@@ -32,7 +32,7 @@ class LevelMenu extends FullScreen {
             button.text = i+1 + ".";
             button.autoSize = false;
             
-            
+            trace(configuration.LEVEL);
             button.styleName = "level-button";
             button.disabled = i > configuration.LEVEL;
             button.onClick = function(e:UIEvent){ gs.buttonClickSound(); new GameScene(i).show(); };
